@@ -1,17 +1,32 @@
 #!/bin/csh
-#PBS -N python_job              # Job name
-#PBS -S /bin/csh                # Use the C-shell interpreter
-#PBS -l select=50:ncpus=20:mpiprocs=20:model=ivy  # Request 50 Ivy Bridge nodes, 20 MPI processes per node
-#PBS -l walltime=2:00:00        # Maximum runtime of 2 hours
-#PBS -j oe                      # Combine stdout and stderr into a single file
-#PBS -W group_list=a0801        # Specify your project group
-#PBS -m abe                     # Notify on abort, begin, and end
-#PBS -M your_email@example.com  # Email address for notifications
+#PBS -N python_job
+# Job name
+
+#PBS -S /bin/csh
+# Use the C-shell interpreter
+
+#PBS -l select=50:ncpus=20:mpiprocs=20:model=ivy
+# Request 50 Ivy Bridge nodes with 20 MPI processes per node
+
+#PBS -l walltime=2:00:00
+# Maximum runtime of 2 hours
+
+#PBS -j oe
+# Combine stdout and stderr into a single file
+
+#PBS -W group_list=a0801
+# Specify your project group
+
+#PBS -m abe
+# Notify on abort, begin, and end
+
+#PBS -M 100032493@ccisd.net
+# Email address for notifications
 
 # Load required modules
-module load comp-intel/2020.4.304  # Load the Intel compiler
-module load mpi-hpe/mpt           # Load the HPE MPT library
-module load python3               # Load Python3 environment
+module load comp-intel/2020.4.304
+module load mpi-hpe/mpt
+module load python3
 
 # Change to the directory where the job was submitted
 cd $PBS_O_WORKDIR
@@ -22,10 +37,10 @@ source myenv/bin/activate
 pip install --upgrade pip
 pip install numpy pandas qiskit qiskit-machine-learning scipy scikit-learn
 
-# Calculate the total number of MPI processes (50 nodes × 20 processes per node = 1000)
+# Set the total number of MPI processes (50 nodes × 20 processes per node = 1000)
 set total_procs = 1000
 
-# Execute the Python script with mpiexec
+# Execute the Python script using mpiexec
 mpiexec -np $total_procs python "QkNN - ARCENE - T2.py"
 
 # End of script
