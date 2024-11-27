@@ -1,0 +1,84 @@
+Job 21129291.pbspl1.nas.nasa.gov started on Wed Nov 27 13:25:21 PST 2024
+The job requested the following resources:
+    ncpus=1000
+    place=scatter:excl
+    walltime=02:00:00
+
+PBS set the following environment variables:
+        FORT_BUFFERED = 1
+                   TZ = PST8PDT
+
+On r421i5n11:
+Current directory is /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE
+Loading mpi-hpe/mpt
+  Loading requirement: mpi-hpe/mpt.2.28_25Apr23_rhel87
+r431i6n12: /nobackup/ajesani/myenv/bin/python
+r427i5n7: /nobackup/ajesani/myenv/bin/python
+r435i3n10: /nobackup/ajesani/myenv/bin/python
+r435i3n1: /nobackup/ajesani/myenv/bin/python
+r421i5n11: /nobackup/ajesani/myenv/bin/python
+r427i5n10: /nobackup/ajesani/myenv/bin/python
+r433i2n10: /nobackup/ajesani/myenv/bin/python
+r435i3n13: /nobackup/ajesani/myenv/bin/python
+r435i5n7: /nobackup/ajesani/myenv/bin/python
+r435i3n11: /nobackup/ajesani/myenv/bin/python
+r435i5n14: /nobackup/ajesani/myenv/bin/python
+r435i6n2: /nobackup/ajesani/myenv/bin/python
+r435i3n16: /nobackup/ajesani/myenv/bin/python
+r433i2n3: /nobackup/ajesani/myenv/bin/python
+r433i2n5: /nobackup/ajesani/myenv/bin/python
+r433i2n4: /nobackup/ajesani/myenv/bin/python
+r433i5n16: /nobackup/ajesani/myenv/bin/python
+r435i6n6: /nobackup/ajesani/myenv/bin/python
+r437i0n7: /nobackup/ajesani/myenv/bin/python
+r435i6n10: /nobackup/ajesani/myenv/bin/python
+r435i7n8: /nobackup/ajesani/myenv/bin/python
+r433i6n6: /nobackup/ajesani/myenv/bin/python
+r433i2n11: /nobackup/ajesani/myenv/bin/python
+r433i2n6: /nobackup/ajesani/myenv/bin/python
+r435i7n3: /nobackup/ajesani/myenv/bin/python
+r435i7n9: /nobackup/ajesani/myenv/bin/python
+r437i0n8: /nobackup/ajesani/myenv/bin/python
+r437i0n10: /nobackup/ajesani/myenv/bin/python
+r435i7n7: /nobackup/ajesani/myenv/bin/python
+r435i6n11: /nobackup/ajesani/myenv/bin/python
+r433i6n9: /nobackup/ajesani/myenv/bin/python
+r433i2n7: /nobackup/ajesani/myenv/bin/python
+r433i5n15: /nobackup/ajesani/myenv/bin/python
+r435i7n10: /nobackup/ajesani/myenv/bin/python
+r433i5n13: /nobackup/ajesani/myenv/bin/python
+r433i4n16: /nobackup/ajesani/myenv/bin/python
+r437i1n0: /nobackup/ajesani/myenv/bin/python
+r433i3n6: /nobackup/ajesani/myenv/bin/python
+r433i2n9: /nobackup/ajesani/myenv/bin/python
+r433i6n10: /nobackup/ajesani/myenv/bin/python
+r433i6n11: /nobackup/ajesani/myenv/bin/python
+r433i6n8: /nobackup/ajesani/myenv/bin/python
+r433i5n12: /nobackup/ajesani/myenv/bin/python
+r433i6n7: /nobackup/ajesani/myenv/bin/python
+r433i5n10: /nobackup/ajesani/myenv/bin/python
+r433i3n10: /nobackup/ajesani/myenv/bin/python
+r433i4n13: /nobackup/ajesani/myenv/bin/python
+r433i4n10: /nobackup/ajesani/myenv/bin/python
+r433i3n12: /nobackup/ajesani/myenv/bin/python
+r433i5n11: /nobackup/ajesani/myenv/bin/python
+/u/scicon/tools/bin/several_tries is running the command mpiexec -np 1000 /nobackup/ajesani/myenv/bin/python /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/QkNN - ARCENE - T4.py
+r433i6n7: ssh: connect to host r433i6n7 port 22: No route to host
+pdsh@r421i5n11: r433i6n7: ssh exited with exit code 255
+
+____________________________________________________________________
+Job Resource Usage Summary for 21129291.pbspl1.nas.nasa.gov
+
+    CPU Time Used            : 09:19:37
+    Real Memory Used         : 54100096kb
+    Walltime Used            : 00:32:57
+    Exit Status              : 271
+
+    Number of CPUs Requested : 1000
+    Walltime Requested       : 02:00:00
+
+    Execution Queue          : normal
+    Charged To               : n2217
+
+    Job Stopped              : Wed Nov 27 13:58:50 2024
+____________________________________________________________________

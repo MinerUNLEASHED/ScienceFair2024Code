@@ -1,0 +1,41 @@
+Job 21129007.pbspl1.nas.nasa.gov started on Wed Nov 27 12:17:42 PST 2024
+The job requested the following resources:
+    ncpus=1000
+    place=scatter:excl
+    walltime=02:00:00
+
+PBS set the following environment variables:
+        FORT_BUFFERED = 1
+                   TZ = PST8PDT
+
+On r437i0n15:
+Warning: no access to tty (Inappropriate ioctl for device).
+Thus no job control in this shell.
+Current directory is /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE
+Loading mpi-hpe/mpt
+  Loading requirement: mpi-hpe/mpt.2.28_25Apr23_rhel87
+Badly placed ()'s.
+Traceback (most recent call last):
+  File "/nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/QkNN - ARCENE - T3.py", line 13, in <module>
+    from qiskit.circuit.library import ZZFeatureMap
+ModuleNotFoundError: No module named 'qiskit'
+MPT ERROR: could not run executable.
+	(HPE MPT 2.28  04/24/23 12:22:36-mraymond)
+Killed
+
+____________________________________________________________________
+Job Resource Usage Summary for 21129007.pbspl1.nas.nasa.gov
+
+    CPU Time Used            : 00:00:04
+    Real Memory Used         : 1040kb
+    Walltime Used            : 00:00:05
+    Exit Status              : 137
+
+    Number of CPUs Requested : 1000
+    Walltime Requested       : 02:00:00
+
+    Execution Queue          : normal
+    Charged To               : n2217
+
+    Job Stopped              : Wed Nov 27 12:18:21 2024
+____________________________________________________________________
