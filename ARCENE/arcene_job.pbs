@@ -39,6 +39,7 @@ source /nobackup/ajesani/myenv/bin/activate
 #set total_procs = 1000
 
 # Execute the Python script using mpiexec
-mpiexec -np 1000 python "/nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/QkNN - ARCENE - T4.py"
+mpiexec -np 1000 /nobackup/ajesani/myenv/bin/python "/nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/QkNN - ARCENE - T4.py"
+
 
 # End of script
