@@ -1,9 +1,9 @@
-#!/bin/csh
+#!/bin/bash
 #PBS -N qknn_arcene_t2
 # Job name
 
-#PBS -S /bin/csh
-# Use the C-shell interpreter
+#PBS -S /bin/bash
+# Use the Bash shell interpreter
 
 #PBS -l select=50:ncpus=20:mpiprocs=20:model=ivy
 # Request 50 Ivy Bridge nodes with 20 MPI processes per node
@@ -17,11 +17,10 @@
 #PBS -W group_list=n2217
 # Specify your project group
 
-#PBS -m abe
-# Notify on abort, begin, and end
-
-#PBS -M 100032493@ccisd.net
-# Email address for notifications
+# Export environment variables for MPI
+export MPI_LAUNCH_TIMEOUT=40
+export MPI_SHEPHERD=true
+export PATH=/nobackup/ajesani/myenv/bin:$PATH
 
 # Load required modules
 module load comp-intel/2020.4.304
@@ -29,17 +28,20 @@ module load mpi-hpe/mpt
 module load python3
 
 # Change to the directory where the job was submitted
-#cd $PBS_O_WORKDIR
-cd ~
+cd ~  # Ensure you're in the home directory
+
+# Ensure all necessary filesystems are mounted
+# This ensures /nobackup is available across all nodes
+export SITE_NEEDED="/nobackup"
 
 # Activate the pre-existing virtual environment
 source /nobackup/ajesani/myenv/bin/activate
 
-# Calculate the total number of MPI processes (50 nodes × 20 processes per node = 1000)
-#set total_procs = 1000
+# Preload the required files across nodes (use pdsh to ensure availability)
+pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "ls /nobackup/ajesani/myenv/bin/python"
 
-# Execute the Python script using mpiexec
+# Execute the Python script using mpiexec with retries
+/u/scicon/tools/bin/several_tries \
 mpiexec -np 1000 /nobackup/ajesani/myenv/bin/python "/nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/QkNN - ARCENE - T4.py"
-
 
 # End of script
