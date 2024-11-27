@@ -26,6 +26,7 @@
 # Load required modules
 module load comp-intel/2020.4.304
 module load mpi-hpe/mpt
+module load python3
 
 # Change to the directory where the job was submitted
 cd $PBS_O_WORKDIR

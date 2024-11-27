@@ -27,6 +27,8 @@ labels = dataset.iloc[:, -1]  # The last column is the label
 # Define the number of repetitions
 n = 5
 
+print("And it is now on its way")
+
 
 # Quantum k-NN function
 def quantum_knn(test_kernel_matrix, train_kernel_matrix, y_train, k=3):
