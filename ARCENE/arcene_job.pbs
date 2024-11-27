@@ -5,7 +5,7 @@
 #PBS -S /bin/bash
 # Use the Bash shell interpreter
 
-#PBS -l select=75:ncpus=20:mpiprocs=15:model=ivy:bigmem=true
+#PBS -l select=75:ncpus=20:mpiprocs=15:model=ivy
 # Request 50 Ivy Bridge nodes with 20 MPI processes per node
 
 #PBS -l walltime=4:00:00
