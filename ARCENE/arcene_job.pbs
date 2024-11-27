@@ -14,13 +14,13 @@
 #PBS -j oe
 # Combine stdout and stderr into a single file
 
-#PBS -W group_list=a0801
+#PBS -W group_list=n2217
 # Specify your project group
 
 #PBS -m abe
 # Notify on abort, begin, and end
 
-#PBS -M your_email@example.com
+#PBS -M 100032493@ccisd.net
 # Email address for notifications
 
 # Load required modules
