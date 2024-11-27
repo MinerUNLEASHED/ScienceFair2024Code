@@ -1,0 +1,31 @@
+#!/bin/csh
+#PBS -N python_job                # Job name
+#PBS -S /bin/csh                 # Use the C-shell interpreter
+#PBS -l select=50:ncpus=20:mpiprocs=20:model=ivy  # Request 50 nodes with 20 MPI processes per node
+#PBS -l walltime=2:00:00         # Maximum runtime of 2 hours
+#PBS -j oe                       # Combine stdout and stderr into a single file
+#PBS -W group_list=a0801         # Specify your project group
+#PBS -m abe                      # Notify on abort, begin, and end
+#PBS -M your_email@example.com   # Email address for notifications
+
+# Load the necessary modules
+module load comp-intel/2020.4.304  # Latest Intel compiler
+module load mpi-hpe/mpt           # Recommended HPE MPT library
+module load python3               # Python 3 environment
+
+# Change to the directory from which the job was submitted
+cd $PBS_O_WORKDIR
+
+# Set up a Python virtual environment for the job
+python3 -m venv myenv
+source myenv/bin/activate
+pip install --upgrade pip
+pip install numpy pandas qiskit qiskit-machine-learning scipy scikit-learn
+
+# Calculate the total number of MPI processes (50 nodes × 20 processes per node)
+set total_procs = 1000
+
+# Execute the Python script using mpiexec with the calculated total processes
+mpiexec -np $total_procs python "QkNN - ARCENE - T2.py"
+
+# End of script
