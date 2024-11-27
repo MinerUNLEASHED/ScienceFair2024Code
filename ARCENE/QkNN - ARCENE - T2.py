@@ -17,8 +17,9 @@ from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 
 # Load the ARCENE dataset
-file_path = 'Standardized_ARCENE_Dataset.csv'  # Update the path as needed
-dataset = pd.read_csv(file_path)
+file_path = os.path.join(os.path.dirname(__file__), 'Standardized_ARCENE_Dataset.csv')
+dataset = pd.read_csv(file_path)  # Update the path as needed
+# dataset = pd.read_csv(file_path)
 
 # Separate features and labels
 features = dataset.iloc[:, :-1]  # All columns except the last one
