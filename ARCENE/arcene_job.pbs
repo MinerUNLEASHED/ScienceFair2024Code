@@ -20,16 +20,19 @@
 #PBS -m abe
 # Notify on abort, begin, and end
 
-#PBS -M 100032493@ccisd.net
+#PBS -M your_email@example.com
 # Email address for notifications
 
 # Load required modules
 module load comp-intel/2020.4.304
 module load mpi-hpe/mpt
-module load python3
 
 # Change to the directory where the job was submitted
 cd $PBS_O_WORKDIR
+
+# Compile code if needed (example flags for AVX and vectorization)
+# These are provided as an example for users compiling binaries
+# icc -O2 -xAVX -ipo -vec-report2 -o my_program my_program.c
 
 # Set up a Python virtual environment for dependencies
 python3 -m venv myenv
@@ -37,7 +40,7 @@ source myenv/bin/activate
 pip install --upgrade pip
 pip install numpy pandas qiskit qiskit-machine-learning scipy scikit-learn
 
-# Set the total number of MPI processes (50 nodes × 20 processes per node = 1000)
+# Calculate the total number of MPI processes (50 nodes × 20 processes per node = 1000)
 set total_procs = 1000
 
 # Execute the Python script using mpiexec
