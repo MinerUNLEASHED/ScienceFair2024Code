@@ -1,5 +1,5 @@
 #!/bin/csh
-#PBS -N python_job
+#PBS -N qknn_arcene_t2
 # Job name
 
 #PBS -S /bin/csh
