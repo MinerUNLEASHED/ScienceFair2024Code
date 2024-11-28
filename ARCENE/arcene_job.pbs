@@ -21,7 +21,7 @@
 # Email address for notifications
 
 #PBS -m abe
-# Send email notifications on abort, begin, and end
+# Notify on abort, begin, and end
 
 # Export environment variables for MPI
 export MPI_LAUNCH_TIMEOUT=40
@@ -31,28 +31,33 @@ export SITE_NEEDED="/nobackup"
 
 # Load required modules
 module load comp-intel/2020.4.304
-module load mpi-hpe/mpt.2.25
+module load mpi-hpe/mpt
 module load python3
 
 # Change to the directory where the job was submitted
 cd ~  # Ensure you're in the home directory
 
-# Clean TMPDIR on all nodes
-pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "rm -rf \$TMPDIR/*"
+# Ensure all necessary filesystems are mounted
+export SITE_NEEDED="/nobackup"
 
-# Verify required files are accessible
-pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "ls /nobackup/ajesani/myenv/bin/python"
-pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "ls /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv"
+# Activate the pre-existing virtual environment
+source /nobackup/ajesani/myenv/bin/activate
 
-# Copy virtual environment and ARCENE directory to TMPDIR
-#pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "cp -r /nobackup/ajesani/myenv \$TMPDIR/"
-#pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "cp -r /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE \$TMPDIR/"
+# Clean up TMPDIR (handle read-only filesystem errors gracefully)
+pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "rm -rf \$TMPDIR/* 2>/dev/null || true"
 
-# Execute the Python script using mpiexec with retries
-/u/scicon/tools/bin/several_tries -n 2 \
-mpiexec -np 1125 /u/scicon/tools/bin/mbind.x -gm -cs /nobackup/ajesani/myenv/bin/python "/nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/QkNN - ARCENE - T4.py"
+# Verify files exist before proceeding
+pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "ls /nobackup/ajesani/myenv/bin/python || exit 1"
+pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "ls /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv || exit 1"
 
-# Clean TMPDIR after job completion
-pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "rm -rf \$TMPDIR/*"
+# Copy required files to TMPDIR
+pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "cp -r /nobackup/ajesani/myenv \$TMPDIR/"
+pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "cp -r /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE \$TMPDIR/"
+
+# Use versionless MPT library
+mpiexec -np 1125 /u/scicon/tools/bin/mbind.x -gm -cs $TMPDIR/myenv/bin/python "$TMPDIR/ARCENE/QkNN - ARCENE - T4.py"
+
+# Clean up TMPDIR (handle read-only filesystem errors gracefully)
+pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "rm -rf \$TMPDIR/* 2>/dev/null || true"
 
 # End of script
