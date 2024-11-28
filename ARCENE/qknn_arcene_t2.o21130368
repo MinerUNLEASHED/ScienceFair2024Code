@@ -1,0 +1,576 @@
+Job 21130368.pbspl1.nas.nasa.gov started on Wed Nov 27 20:23:25 PST 2024
+The job requested the following resources:
+    ncpus=1500
+    place=scatter:excl
+    walltime=04:00:00
+
+PBS set the following environment variables:
+        FORT_BUFFERED = 1
+                   TZ = PST8PDT
+
+On r421i4n2:
+Current directory is /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE
+Loading mpi-hpe/mpt
+  Loading requirement: mpi-hpe/mpt.2.28_25Apr23_rhel87
+r421i4n2: /nobackup/ajesani/myenv/bin/python
+r421i4n4: /nobackup/ajesani/myenv/bin/python
+r455i4n14: /nobackup/ajesani/myenv/bin/python
+r455i5n5: /nobackup/ajesani/myenv/bin/python
+r455i4n17: /nobackup/ajesani/myenv/bin/python
+r455i4n16: /nobackup/ajesani/myenv/bin/python
+r455i5n1: /nobackup/ajesani/myenv/bin/python
+r455i4n11: /nobackup/ajesani/myenv/bin/python
+r455i4n15: /nobackup/ajesani/myenv/bin/python
+r455i5n6: /nobackup/ajesani/myenv/bin/python
+r455i4n12: /nobackup/ajesani/myenv/bin/python
+r455i6n2: /nobackup/ajesani/myenv/bin/python
+r455i5n13: /nobackup/ajesani/myenv/bin/python
+r455i5n9: /nobackup/ajesani/myenv/bin/python
+r455i5n3: /nobackup/ajesani/myenv/bin/python
+r455i5n10: /nobackup/ajesani/myenv/bin/python
+r455i5n4: /nobackup/ajesani/myenv/bin/python
+r455i5n7: /nobackup/ajesani/myenv/bin/python
+r455i5n14: /nobackup/ajesani/myenv/bin/python
+r455i5n11: /nobackup/ajesani/myenv/bin/python
+r455i5n2: /nobackup/ajesani/myenv/bin/python
+r455i5n16: /nobackup/ajesani/myenv/bin/python
+r455i5n15: /nobackup/ajesani/myenv/bin/python
+r455i6n6: /nobackup/ajesani/myenv/bin/python
+r455i6n4: /nobackup/ajesani/myenv/bin/python
+r455i5n8: /nobackup/ajesani/myenv/bin/python
+r455i6n1: /nobackup/ajesani/myenv/bin/python
+r455i5n17: /nobackup/ajesani/myenv/bin/python
+r455i6n0: /nobackup/ajesani/myenv/bin/python
+r455i5n12: /nobackup/ajesani/myenv/bin/python
+r455i6n3: /nobackup/ajesani/myenv/bin/python
+r455i6n5: /nobackup/ajesani/myenv/bin/python
+r455i6n7: /nobackup/ajesani/myenv/bin/python
+r455i6n16: /nobackup/ajesani/myenv/bin/python
+r457i0n0: /nobackup/ajesani/myenv/bin/python
+r457i0n4: /nobackup/ajesani/myenv/bin/python
+r457i0n1: /nobackup/ajesani/myenv/bin/python
+r457i0n3: /nobackup/ajesani/myenv/bin/python
+r457i0n7: /nobackup/ajesani/myenv/bin/python
+r455i6n12: /nobackup/ajesani/myenv/bin/python
+r455i6n8: /nobackup/ajesani/myenv/bin/python
+r457i0n8: /nobackup/ajesani/myenv/bin/python
+r455i6n15: /nobackup/ajesani/myenv/bin/python
+r455i6n9: /nobackup/ajesani/myenv/bin/python
+r455i7n6: /nobackup/ajesani/myenv/bin/python
+r455i6n14: /nobackup/ajesani/myenv/bin/python
+r457i0n2: /nobackup/ajesani/myenv/bin/python
+r455i7n1: /nobackup/ajesani/myenv/bin/python
+r455i6n17: /nobackup/ajesani/myenv/bin/python
+r455i7n7: /nobackup/ajesani/myenv/bin/python
+r455i6n10: /nobackup/ajesani/myenv/bin/python
+r457i0n9: /nobackup/ajesani/myenv/bin/python
+r455i6n11: /nobackup/ajesani/myenv/bin/python
+r455i7n16: /nobackup/ajesani/myenv/bin/python
+r455i7n3: /nobackup/ajesani/myenv/bin/python
+r455i7n15: /nobackup/ajesani/myenv/bin/python
+r455i7n17: /nobackup/ajesani/myenv/bin/python
+r455i7n9: /nobackup/ajesani/myenv/bin/python
+r455i7n14: /nobackup/ajesani/myenv/bin/python
+r455i7n12: /nobackup/ajesani/myenv/bin/python
+r455i7n2: /nobackup/ajesani/myenv/bin/python
+r455i7n11: /nobackup/ajesani/myenv/bin/python
+r457i0n10: /nobackup/ajesani/myenv/bin/python
+r457i0n6: /nobackup/ajesani/myenv/bin/python
+r457i1n1: /nobackup/ajesani/myenv/bin/python
+r457i1n4: /nobackup/ajesani/myenv/bin/python
+r457i0n13: /nobackup/ajesani/myenv/bin/python
+r457i0n15: /nobackup/ajesani/myenv/bin/python
+r457i1n0: /nobackup/ajesani/myenv/bin/python
+r457i1n3: /nobackup/ajesani/myenv/bin/python
+r457i1n6: /nobackup/ajesani/myenv/bin/python
+r457i1n5: /nobackup/ajesani/myenv/bin/python
+r457i1n2: /nobackup/ajesani/myenv/bin/python
+r457i0n14: /nobackup/ajesani/myenv/bin/python
+r457i0n16: /nobackup/ajesani/myenv/bin/python
+r421i4n4: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i4n11: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i4n16: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i4n14: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i4n15: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r421i4n2: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i4n12: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i4n17: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i5n1: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i5n7: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i5n2: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i5n3: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i5n5: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i5n4: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i5n6: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i5n10: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i5n9: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i5n8: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i5n11: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i5n12: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i5n14: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i5n15: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i6n2: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i5n13: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i5n16: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i6n0: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i5n17: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i6n3: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i6n4: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i6n5: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i6n6: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i6n1: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i6n7: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i6n10: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i6n8: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i6n9: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i6n12: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i6n14: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i6n16: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i6n11: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i7n3: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i6n15: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i7n2: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i7n1: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i6n17: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i7n12: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i7n6: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i7n11: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i7n9: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i7n7: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i7n14: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i7n17: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i7n15: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r455i7n16: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r457i0n0: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r457i0n3: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r457i0n1: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r457i0n2: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r457i0n4: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r457i0n9: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r457i0n7: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r457i0n8: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r457i0n10: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r457i0n6: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r457i0n13: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r457i0n15: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r457i0n14: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r457i1n2: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r457i1n1: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r457i1n3: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r457i1n5: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r457i1n6: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r457i1n0: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r457i1n4: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r457i0n16: /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv
+r421i4n4: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r421i4n4: ssh exited with exit code 1
+r455i4n15: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i4n15: ssh exited with exit code 1
+r455i4n11: cp: cannot create directory '/myenv': Read-only file system
+r455i4n16: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i4n16: ssh exited with exit code 1
+pdsh@r421i4n2: r455i4n11: ssh exited with exit code 1
+r455i5n2: cp: cannot create directory '/myenv': Read-only file system
+r455i4n12: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i5n2: ssh exited with exit code 1
+pdsh@r421i4n2: r455i4n12: ssh exited with exit code 1
+r455i5n4: cp: cannot create directory '/myenv': Read-only file system
+r455i4n17: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i5n4: ssh exited with exit code 1
+r421i4n2: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i4n17: ssh exited with exit code 1
+pdsh@r421i4n2: r421i4n2: ssh exited with exit code 1
+r455i5n5: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i5n5: ssh exited with exit code 1
+r455i5n9: cp: cannot create directory '/myenv': Read-only file system
+r455i5n1: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i5n9: ssh exited with exit code 1
+r455i5n7: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i5n1: ssh exited with exit code 1
+pdsh@r421i4n2: r455i5n7: ssh exited with exit code 1
+r455i5n3: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i5n3: ssh exited with exit code 1
+r455i4n14: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i4n14: ssh exited with exit code 1
+r455i5n8: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i5n8: ssh exited with exit code 1
+r455i5n13: cp: cannot create directory '/myenv': Read-only file system
+r455i5n11: cp: cannot create directory '/myenv': Read-only file system
+r455i5n6: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i5n6: ssh exited with exit code 1
+pdsh@r421i4n2: r455i5n11: ssh exited with exit code 1
+pdsh@r421i4n2: r455i5n13: ssh exited with exit code 1
+r455i5n12: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i5n12: ssh exited with exit code 1
+r455i5n10: cp: cannot create directory '/myenv': Read-only file system
+r455i5n16: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i5n10: ssh exited with exit code 1
+pdsh@r421i4n2: r455i5n16: ssh exited with exit code 1
+r455i5n15: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i5n15: ssh exited with exit code 1
+r455i5n14: cp: cannot create directory '/myenv': Read-only file system
+r455i6n3: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i6n3: ssh exited with exit code 1
+pdsh@r421i4n2: r455i5n14: ssh exited with exit code 1
+r455i6n0: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i6n0: ssh exited with exit code 1
+r455i6n2: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i6n2: ssh exited with exit code 1
+r455i5n17: cp: cannot create directory '/myenv': Read-only file system
+r455i6n1: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i6n1: ssh exited with exit code 1
+pdsh@r421i4n2: r455i5n17: ssh exited with exit code 1
+r455i6n5: cp: cannot create directory '/myenv': Read-only file system
+r455i6n4: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i6n4: ssh exited with exit code 1
+pdsh@r421i4n2: r455i6n5: ssh exited with exit code 1
+r455i6n6: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i6n6: ssh exited with exit code 1
+r455i6n10: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i6n10: ssh exited with exit code 1
+r455i6n8: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i6n8: ssh exited with exit code 1
+r455i6n14: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i6n14: ssh exited with exit code 1
+r455i6n7: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i6n7: ssh exited with exit code 1
+r455i6n9: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i6n9: ssh exited with exit code 1
+r455i6n12: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i6n12: ssh exited with exit code 1
+r455i6n16: cp: cannot create directory '/myenv': Read-only file system
+r455i6n17: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i6n17: ssh exited with exit code 1
+pdsh@r421i4n2: r455i6n16: ssh exited with exit code 1
+r455i6n11: cp: cannot create directory '/myenv': Read-only file system
+r455i6n15: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i6n11: ssh exited with exit code 1
+pdsh@r421i4n2: r455i6n15: ssh exited with exit code 1
+r455i7n2: cp: cannot create directory '/myenv': Read-only file system
+r455i7n6: cp: cannot create directory '/myenv': Read-only file system
+r455i7n7: cp: cannot create directory '/myenv': Read-only file system
+r455i7n1: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i7n7: ssh exited with exit code 1
+pdsh@r421i4n2: r455i7n2: ssh exited with exit code 1
+pdsh@r421i4n2: r455i7n6: ssh exited with exit code 1
+pdsh@r421i4n2: r455i7n1: ssh exited with exit code 1
+r455i7n3: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i7n3: ssh exited with exit code 1
+r457i0n1: cp: cannot create directory '/myenv': Read-only file system
+r455i7n11: cp: cannot create directory '/myenv': Read-only file system
+r455i7n12: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r457i0n1: ssh exited with exit code 1
+pdsh@r421i4n2: r455i7n11: ssh exited with exit code 1
+r455i7n9: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i7n12: ssh exited with exit code 1
+pdsh@r421i4n2: r455i7n9: ssh exited with exit code 1
+r455i7n17: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i7n17: ssh exited with exit code 1
+r455i7n14: cp: cannot create directory '/myenv': Read-only file system
+r455i7n15: cp: cannot create directory '/myenv': Read-only file system
+r457i0n2: cp: cannot create directory '/myenv': Read-only file system
+r457i0n3: cp: cannot create directory '/myenv': Read-only file system
+r457i0n0: cp: cannot create directory '/myenv': Read-only file system
+r455i7n16: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r455i7n14: ssh exited with exit code 1
+pdsh@r421i4n2: r455i7n15: ssh exited with exit code 1
+pdsh@r421i4n2: r457i0n2: ssh exited with exit code 1
+pdsh@r421i4n2: r457i0n3: ssh exited with exit code 1
+pdsh@r421i4n2: r457i0n0: ssh exited with exit code 1
+pdsh@r421i4n2: r455i7n16: ssh exited with exit code 1
+r457i0n7: cp: cannot create directory '/myenv': Read-only file system
+r457i0n4: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r457i0n7: ssh exited with exit code 1
+pdsh@r421i4n2: r457i0n4: ssh exited with exit code 1
+r457i0n8: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r457i0n8: ssh exited with exit code 1
+r457i0n9: cp: cannot create directory '/myenv': Read-only file system
+r457i0n6: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r457i0n9: ssh exited with exit code 1
+pdsh@r421i4n2: r457i0n6: ssh exited with exit code 1
+r457i0n10: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r457i0n10: ssh exited with exit code 1
+r457i0n13: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r457i0n13: ssh exited with exit code 1
+r457i0n15: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r457i0n15: ssh exited with exit code 1
+r457i1n0: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r457i1n0: ssh exited with exit code 1
+r457i1n1: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r457i1n1: ssh exited with exit code 1
+r457i1n3: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r457i1n3: ssh exited with exit code 1
+r457i1n5: cp: cannot create directory '/myenv': Read-only file system
+r457i1n2: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r457i1n5: ssh exited with exit code 1
+pdsh@r421i4n2: r457i1n2: ssh exited with exit code 1
+r457i1n4: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r457i1n4: ssh exited with exit code 1
+r457i1n6: cp: cannot create directory '/myenv': Read-only file system
+r457i0n14: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r457i1n6: ssh exited with exit code 1
+pdsh@r421i4n2: r457i0n14: ssh exited with exit code 1
+r457i0n16: cp: cannot create directory '/myenv': Read-only file system
+pdsh@r421i4n2: r457i0n16: ssh exited with exit code 1
+r455i4n11: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r455i4n11: ssh exited with exit code 1
+r455i4n15: cp: cannot create directory '/ARCENE': Read-only file system
+r455i4n12: cp: cannot create directory '/ARCENE': Read-only file system
+r455i4n16: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r455i4n12: ssh exited with exit code 1
+pdsh@r421i4n2: r455i4n16: ssh exited with exit code 1
+r421i4n4: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r455i4n15: ssh exited with exit code 1
+pdsh@r421i4n2: r421i4n4: ssh exited with exit code 1
+r455i5n2: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r455i5n2: ssh exited with exit code 1
+r455i4n17: cp: cannot create directory '/ARCENE': Read-only file system
+r455i4n14: cp: cannot create directory '/ARCENE': Read-only file system
+r455i5n4: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r455i4n17: ssh exited with exit code 1
+r455i5n1: cp: cannot create directory '/ARCENE': Read-only file system
+r455i5n3: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r455i5n4: ssh exited with exit code 1
+pdsh@r421i4n2: r455i5n1: ssh exited with exit code 1
+pdsh@r421i4n2: r455i4n14: ssh exited with exit code 1
+r421i4n2: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r455i5n3: ssh exited with exit code 1
+pdsh@r421i4n2: r421i4n2: ssh exited with exit code 1
+r455i5n6: cp: cannot create directory '/ARCENE': Read-only file system
+r455i5n8: cp: cannot create directory '/ARCENE': Read-only file system
+r455i5n5: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r455i5n6: ssh exited with exit code 1
+r455i5n7: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r455i5n8: ssh exited with exit code 1
+pdsh@r421i4n2: r455i5n7: ssh exited with exit code 1
+pdsh@r421i4n2: r455i5n5: ssh exited with exit code 1
+r455i5n10: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r455i5n10: ssh exited with exit code 1
+r455i5n11: cp: cannot create directory '/ARCENE': Read-only file system
+r455i5n9: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r455i5n11: ssh exited with exit code 1
+pdsh@r421i4n2: r455i5n9: ssh exited with exit code 1
+r455i5n14: cp: cannot create directory '/ARCENE': Read-only file system
+r455i5n12: cp: cannot create directory '/ARCENE': Read-only file system
+r455i5n13: cp: cannot create directory '/ARCENE': Read-only file system
+r455i6n0: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r455i5n12: ssh exited with exit code 1
+pdsh@r421i4n2: r455i5n13: ssh exited with exit code 1
+pdsh@r421i4n2: r455i5n14: ssh exited with exit code 1
+pdsh@r421i4n2: r455i6n0: ssh exited with exit code 1
+r455i5n15: cp: cannot create directory '/ARCENE': Read-only file system
+r455i5n16: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r455i5n16: ssh exited with exit code 1
+pdsh@r421i4n2: r455i5n15: ssh exited with exit code 1
+r455i6n3: cp: cannot create directory '/ARCENE': Read-only file system
+r455i6n4: cp: cannot create directory '/ARCENE': Read-only file system
+r455i6n1: cp: cannot create directory '/ARCENE': Read-only file system
+r455i5n17: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r455i6n4: ssh exited with exit code 1
+pdsh@r421i4n2: r455i6n1: ssh exited with exit code 1
+pdsh@r421i4n2: r455i6n3: ssh exited with exit code 1
+pdsh@r421i4n2: r455i5n17: ssh exited with exit code 1
+r455i6n2: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r455i6n2: ssh exited with exit code 1
+r455i6n5: cp: cannot create directory '/ARCENE': Read-only file system
+r455i6n6: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r455i6n5: ssh exited with exit code 1
+pdsh@r421i4n2: r455i6n6: ssh exited with exit code 1
+r455i6n10: cp: cannot create directory '/ARCENE': Read-only file system
+r455i6n8: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r455i6n10: ssh exited with exit code 1
+pdsh@r421i4n2: r455i6n8: ssh exited with exit code 1
+r455i6n9: cp: cannot create directory '/ARCENE': Read-only file system
+r455i6n7: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r455i6n7: ssh exited with exit code 1
+pdsh@r421i4n2: r455i6n9: ssh exited with exit code 1
+r455i6n14: cp: cannot create directory '/ARCENE': Read-only file system
+r455i6n11: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r455i6n11: ssh exited with exit code 1
+pdsh@r421i4n2: r455i6n14: ssh exited with exit code 1
+r455i6n12: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r455i6n12: ssh exited with exit code 1
+r455i6n15: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r455i6n15: ssh exited with exit code 1
+r455i6n16: cp: cannot create directory '/ARCENE': Read-only file system
+r455i6n17: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r455i6n16: ssh exited with exit code 1
+r455i7n1: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r455i6n17: ssh exited with exit code 1
+pdsh@r421i4n2: r455i7n1: ssh exited with exit code 1
+r455i7n7: cp: cannot create directory '/ARCENE': Read-only file system
+r455i7n3: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r455i7n7: ssh exited with exit code 1
+pdsh@r421i4n2: r455i7n3: ssh exited with exit code 1
+r455i7n2: cp: cannot create directory '/ARCENE': Read-only file system
+r455i7n6: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r455i7n2: ssh exited with exit code 1
+pdsh@r421i4n2: r455i7n6: ssh exited with exit code 1
+r455i7n11: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r455i7n11: ssh exited with exit code 1
+r455i7n9: cp: cannot create directory '/ARCENE': Read-only file system
+r455i7n12: cp: cannot create directory '/ARCENE': Read-only file system
+r455i7n15: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r455i7n9: ssh exited with exit code 1
+pdsh@r421i4n2: r455i7n12: ssh exited with exit code 1
+pdsh@r421i4n2: r455i7n15: ssh exited with exit code 1
+r455i7n16: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r455i7n16: ssh exited with exit code 1
+r455i7n14: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r455i7n14: ssh exited with exit code 1
+r455i7n17: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r455i7n17: ssh exited with exit code 1
+r457i0n0: cp: cannot create directory '/ARCENE': Read-only file system
+r457i0n1: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r457i0n1: ssh exited with exit code 1
+pdsh@r421i4n2: r457i0n0: ssh exited with exit code 1
+r457i0n2: cp: cannot create directory '/ARCENE': Read-only file system
+r457i0n3: cp: cannot create directory '/ARCENE': Read-only file system
+r457i0n4: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r457i0n2: ssh exited with exit code 1
+pdsh@r421i4n2: r457i0n3: ssh exited with exit code 1
+pdsh@r421i4n2: r457i0n4: ssh exited with exit code 1
+r457i0n7: cp: cannot create directory '/ARCENE': Read-only file system
+r457i0n8: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r457i0n7: ssh exited with exit code 1
+pdsh@r421i4n2: r457i0n8: ssh exited with exit code 1
+r457i0n9: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r457i0n9: ssh exited with exit code 1
+r457i0n6: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r457i0n6: ssh exited with exit code 1
+r457i0n10: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r457i0n10: ssh exited with exit code 1
+r457i0n13: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r457i0n13: ssh exited with exit code 1
+r457i0n15: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r457i0n15: ssh exited with exit code 1
+r457i1n0: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r457i1n0: ssh exited with exit code 1
+r457i1n1: cp: cannot create directory '/ARCENE': Read-only file system
+r457i1n2: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r457i1n2: ssh exited with exit code 1
+pdsh@r421i4n2: r457i1n1: ssh exited with exit code 1
+r457i0n14: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r457i0n14: ssh exited with exit code 1
+r457i1n6: cp: cannot create directory '/ARCENE': Read-only file system
+r457i1n3: cp: cannot create directory '/ARCENE': Read-only file system
+r457i1n4: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r457i1n6: ssh exited with exit code 1
+pdsh@r421i4n2: r457i1n3: ssh exited with exit code 1
+r457i1n5: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r457i1n4: ssh exited with exit code 1
+pdsh@r421i4n2: r457i1n5: ssh exited with exit code 1
+r457i0n16: cp: cannot create directory '/ARCENE': Read-only file system
+pdsh@r421i4n2: r457i0n16: ssh exited with exit code 1
+mbind.x: execvp: /var/tmp/pbs.21130368.pbspl1.nas.nasa.gov/myenv/bin/python: No such file or directory
+=>> PBS: job killed: walltime 14464 exceeded limit 14400
+pdsh@r421i4n2: r455i7n14: command timeout
+sending SIGTERM to ssh r455i7n14
+pdsh@r421i4n2: r455i7n6: command timeout
+pdsh@r421i4n2: r455i7n7: command timeout
+pdsh@r421i4n2: r457i0n1: command timeout
+pdsh@r421i4n2: r455i7n9: command timeout
+sending SIGTERM to ssh r455i7n9
+sending signal 15 to r455i7n9 [ssh] pid 48476
+pdsh@r421i4n2: r457i1n4: command timeout
+sending SIGTERM to ssh r457i1n4
+pdsh@r421i4n2: r457i1n5: command timeout
+pdsh@r421i4n2: r455i7n2: command timeout
+pdsh@r421i4n2: r455i7n11: command timeout
+pdsh@r421i4n2: r455i7n1: command timeout
+pdsh@r421i4n2: r457i1n6: command timeout
+pdsh@r421i4n2: r457i0n13: command timeout
+pdsh@r421i4n2: r455i7n17: command timeout
+sending SIGTERM to ssh r457i0n13
+sending SIGTERM to ssh r455i7n17
+sending signal 15 to r457i0n13 [ssh] pid 48478
+sending signal 15 to r455i7n17 [ssh] pid 48504
+pdsh@r421i4n2: r457i0n2: command timeout
+sending signal 15 to r455i7n14 [ssh] pid 48499
+sending SIGTERM to ssh r457i0n2
+pdsh@r421i4n2: r455i7n3: command timeout
+sending SIGTERM to ssh r455i7n3
+sending signal 15 to r455i7n3 [ssh] pid 48482
+pdsh@r421i4n2: r457i1n2: command timeout
+sending SIGTERM to ssh r457i1n2
+sending SIGTERM to ssh r457i1n5
+sending signal 15 to r457i1n5 [ssh] pid 48474
+sending SIGTERM to ssh r455i7n11
+sending signal 15 to r455i7n11 [ssh] pid 48502
+sending SIGTERM to ssh r455i7n1
+sending signal 15 to r455i7n1 [ssh] pid 48493
+pdsh@r421i4n2: r457i1n1: command timeout
+sending SIGTERM to ssh r457i1n1
+sending signal 15 to r457i1n1 [ssh] pid 48465
+pdsh@r421i4n2: r457i0n15: command timeout
+sending SIGTERM to ssh r457i0n15
+pdsh@r421i4n2: r457i0n8: command timeout
+sending SIGTERM to ssh r457i0n8
+sending signal 15 to r457i0n8 [ssh] pid 48477
+pdsh@r421i4n2: r457i0n3: command timeout
+sending SIGTERM to ssh r457i0n3
+sending signal 15 to r457i0n3 [ssh] pid 48470
+pdsh@r421i4n2: r457i0n7: command timeout
+sending SIGTERM to ssh r457i0n7
+sending signal 15 to r457i0n7 [ssh] pid 48469
+pdsh@r421i4n2: r455i7n16: command timeout
+sending SIGTERM to ssh r455i7n16
+sending SIGTERM to ssh r455i7n7
+sending signal 15 to r455i7n7 [ssh] pid 48506
+pdsh@r421i4n2: r457i1n0: command timeout
+sending SIGTERM to ssh r457i1n0
+sending signal 15 to r457i1n0 [ssh] pid 48483
+sending signal 15 to r457i0n2 [ssh] pid 48485
+sending SIGTERM to ssh r455i7n6
+sending signal 15 to r455i7n6 [ssh] pid 48481
+sending signal 15 to r457i1n4 [ssh] pid 48462
+sending signal 15 to r457i1n2 [ssh] pid 48490
+sending SIGTERM to ssh r455i7n2
+sending signal 15 to r455i7n2 [ssh] pid 48491
+pdsh@r421i4n2: r457i0n10: command timeout
+sending SIGTERM to ssh r457i0n10
+sending signal 15 to r457i0n10 [ssh] pid 48471
+sending signal 15 to r457i0n15 [ssh] pid 48487
+pdsh@r421i4n2: r457i0n0: command timeout
+sending SIGTERM to ssh r457i0n0
+sending signal 15 to r457i0n0 [ssh] pid 48509
+pdsh@r421i4n2: r457i0n6: command timeout
+sending SIGTERM to ssh r457i0n6
+sending signal 15 to r457i0n6 [ssh] pid 48464
+sending SIGTERM to ssh r457i1n6
+sending signal 15 to r455i7n16 [ssh] pid 48488
+sending SIGTERM to ssh r457i0n1
+pdsh@r421i4n2: r455i7n12: command timeout
+sending SIGTERM to ssh r455i7n12
+sending signal 15 to r455i7n12 [ssh] pid 48496
+pdsh@r421i4n2: r457i0n14: command timeout
+sending SIGTERM to ssh r457i0n14
+sending signal 15 to r457i0n14 [ssh] pid 48508
+pdsh@r421i4n2: r457i0n4: command timeout
+sending SIGTERM to ssh r457i0n4
+sending signal 15 to r457i1n6 [ssh] pid 48507
+sending signal 15 to r457i0n1 [ssh] pid 48475
+pdsh@r421i4n2: r457i1n3: command timeout
+sending SIGTERM to ssh r457i1n3
+sending signal 15 to r457i1n3 [ssh] pid 48468
+sending signal 15 to r457i0n4 [ssh] pid 48494
+pdsh@r421i4n2: r457i0n16: command timeout
+sending SIGTERM to ssh r457i0n16
+sending signal 15 to r457i0n16 [ssh] pid 48466
+
+____________________________________________________________________
+Job Resource Usage Summary for 21130368.pbspl1.nas.nasa.gov
+
+    CPU Time Used            : 00:42:59
+    Real Memory Used         : 98120kb
+    Walltime Used            : 04:01:04
+    Exit Status              : 271
+
+    Number of CPUs Requested : 1500
+    Walltime Requested       : 04:00:00
+
+    Execution Queue          : normal
+    Charged To               : n2217
+
+    Job Stopped              : Thu Nov 28 00:29:48 2024
+____________________________________________________________________
