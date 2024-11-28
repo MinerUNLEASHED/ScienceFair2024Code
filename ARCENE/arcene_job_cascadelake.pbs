@@ -5,8 +5,8 @@
 #PBS -S /bin/bash
 # Use the Bash shell interpreter
 
-#PBS -l select=50:ncpus=40:mpiprocs=40:model=cas_ait:mem=160GB
-# Request 50 Cascade Lake nodes with 40 CPUs, 40 MPI processes per node, and a memory limit of 160 GB per node
+#PBS -l select=50:ncpus=40:mpiprocs=20:model=cas_ait:mem=160GB
+# Request 50 Cascade Lake nodes with 40 CPUs, 20 MPI processes per node, and a memory limit of 160 GB per node
 
 #PBS -l walltime=8:00:00
 # Maximum runtime of 8 hours
@@ -32,6 +32,10 @@ export SITE_NEEDED="/nobackup"
 # Load required modules
 module load comp-intel/2020.4.304
 module load mpi-hpe/mpt
+module load pagecache-management/0.5  # Manage page cache
+
+# Limit page cache usage to prevent memory overcommit
+export PAGECACHE_MAX_BYTES=8589934592  # 8GB page cache limit
 
 # Change to the directory where the job was submitted
 cd $PBS_O_WORKDIR  # Ensure you're in the working directory
@@ -46,7 +50,7 @@ source /nobackup/ajesani/myenv/bin/activate
 pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "ls /nobackup/ajesani/myenv/bin/python || exit 1"
 pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "ls /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv || exit 1"
 
-# Use versionless MPT library with maximum processes
-mpiexec -np 2000 /u/scicon/tools/bin/mbind.x -gm -cs /nobackup/ajesani/myenv/bin/python "/nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/QkNN - ARCENE - T5.py"
+# Monitor memory and ensure efficient binding
+mpiexec -np 1000 /u/scicon/tools/bin/mbind.x -gm -cs /nobackup/ajesani/myenv/bin/python "/nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/QkNN - ARCENE - T5.py"
 
 # End of script
