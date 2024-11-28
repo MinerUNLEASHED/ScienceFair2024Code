@@ -8,7 +8,7 @@
 #PBS -l select=50:ncpus=20:mpiprocs=15:model=ivy
 # Request 50 Ivy Bridge nodes with 20 CPUs and 15 MPI processes per node
 
-#PBS -l walltime=10:00:00
+#PBS -l walltime=8:00:00
 # Maximum runtime of 10 hours
 
 #PBS -j oe
@@ -24,7 +24,7 @@
 # Notify on abort, begin, and end
 
 # Export environment variables for MPI
-export MPI_LAUNCH_TIMEOUT=40
+export MPI_LAUNCH_TIMEOUT=60
 export MPI_SHEPHERD=true
 export PATH=/nobackup/ajesani/myenv/bin:$PATH
 export SITE_NEEDED="/nobackup"
@@ -49,7 +49,7 @@ source /nobackup/ajesani/myenv/bin/activate
 # Verify files exist before proceeding
 pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "ls /nobackup/ajesani/myenv/bin/python || exit 1"
 pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "ls /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv || exit 1"
-pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "ls /nobackup"
+#pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "ls /nobackup"
 
 # Copy required files to TMPDIR
 #pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "cp -r /nobackup/ajesani/myenv \$TMPDIR/"
