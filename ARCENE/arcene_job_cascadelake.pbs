@@ -5,8 +5,8 @@
 #PBS -S /bin/bash
 # Use the Bash shell interpreter
 
-#PBS -l select=50:ncpus=128:mpiprocs=128:model=mil_ait
-# Request 50 Milan nodes with 128 CPUs and 128 MPI processes per node
+#PBS -l select=50:ncpus=40:mpiprocs=40:model=cas_ait
+# Request 50 Cascade Lake nodes with 40 CPUs and 40 MPI processes per node
 
 #PBS -l walltime=8:00:00
 # Maximum runtime of 8 hours
@@ -30,9 +30,8 @@ export PATH=/nobackup/ajesani/myenv/bin:$PATH
 export SITE_NEEDED="/nobackup"
 
 # Load required modules
-module load comp-intel/2023.2.1
-module load mpi-hpe/mpt.2.28_25Apr23_rhel87
-module load python3
+module load comp-intel/2020.4.304
+module load mpi-hpe/mpt
 
 # Change to the directory where the job was submitted
 cd $PBS_O_WORKDIR  # Ensure you're in the working directory
@@ -48,6 +47,6 @@ pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "ls /nobackup/ajesani/myenv/bi
 pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "ls /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv || exit 1"
 
 # Use versionless MPT library with maximum processes
-mpiexec -np 6400 /u/scicon/tools/bin/mbind.x -gm -cs /nobackup/ajesani/myenv/bin/python "/nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/QkNN - ARCENE - T4.py"
+mpiexec -np 2000 /u/scicon/tools/bin/mbind.x -gm -cs /nobackup/ajesani/myenv/bin/python "/nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/QkNN - ARCENE - T4.py"
 
 # End of script
