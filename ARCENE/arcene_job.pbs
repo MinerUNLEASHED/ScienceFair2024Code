@@ -8,8 +8,8 @@
 #PBS -l select=75:ncpus=20:mpiprocs=15:model=ivy
 # Request 75 Ivy Bridge nodes with 20 CPUs and 15 MPI processes per node
 
-#PBS -l walltime=4:00:00
-# Maximum runtime of 4 hours
+#PBS -l walltime=8:00:00
+# Maximum runtime of 8 hours
 
 #PBS -j oe
 # Combine stdout and stderr into a single file
@@ -44,20 +44,21 @@ export SITE_NEEDED="/nobackup"
 source /nobackup/ajesani/myenv/bin/activate
 
 # Clean up TMPDIR (handle read-only filesystem errors gracefully)
-pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "rm -rf \$TMPDIR/* 2>/dev/null || true"
+#pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "rm -rf \$TMPDIR/* 2>/dev/null || true"
 
 # Verify files exist before proceeding
 pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "ls /nobackup/ajesani/myenv/bin/python || exit 1"
 pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "ls /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv || exit 1"
+pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "ls /nobackup"
 
 # Copy required files to TMPDIR
-pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "cp -r /nobackup/ajesani/myenv \$TMPDIR/"
-pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "cp -r /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE \$TMPDIR/"
+#pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "cp -r /nobackup/ajesani/myenv \$TMPDIR/"
+#pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "cp -r /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE \$TMPDIR/"
 
 # Use versionless MPT library
-mpiexec -np 1125 /u/scicon/tools/bin/mbind.x -gm -cs $TMPDIR/myenv/bin/python "$TMPDIR/ARCENE/QkNN - ARCENE - T4.py"
+mpiexec -np 1125 /u/scicon/tools/bin/mbind.x -gm -cs /nobackup/ajesani/myenv/bin/python "/nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/QkNN - ARCENE - T4.py"
 
 # Clean up TMPDIR (handle read-only filesystem errors gracefully)
-pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "rm -rf \$TMPDIR/* 2>/dev/null || true"
+#pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "rm -rf \$TMPDIR/* 2>/dev/null || true"
 
 # End of script
