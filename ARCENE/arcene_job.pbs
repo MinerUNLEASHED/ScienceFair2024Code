@@ -8,8 +8,8 @@
 #PBS -l select=75:ncpus=20:mpiprocs=15:model=ivy
 # Request 75 Ivy Bridge nodes with 20 CPUs and 15 MPI processes per node
 
-#PBS -l walltime=8:00:00
-# Maximum runtime of 8 hours
+#PBS -l walltime=10:00:00
+# Maximum runtime of 10 hours
 
 #PBS -j oe
 # Combine stdout and stderr into a single file
