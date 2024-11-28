@@ -5,8 +5,8 @@
 #PBS -S /bin/bash
 # Use the Bash shell interpreter
 
-#PBS -l select=50:ncpus=40:mpiprocs=40:model=cas_ait
-# Request 50 Cascade Lake nodes with 40 CPUs and 40 MPI processes per node
+#PBS -l select=50:ncpus=40:mpiprocs=40:model=cas_ait:mem=160GB
+# Request 50 Cascade Lake nodes with 40 CPUs, 40 MPI processes per node, and a memory limit of 160 GB per node
 
 #PBS -l walltime=8:00:00
 # Maximum runtime of 8 hours
@@ -47,6 +47,6 @@ pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "ls /nobackup/ajesani/myenv/bi
 pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "ls /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv || exit 1"
 
 # Use versionless MPT library with maximum processes
-mpiexec -np 2000 /u/scicon/tools/bin/mbind.x -gm -cs /nobackup/ajesani/myenv/bin/python "/nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/QkNN - ARCENE - T4.py"
+mpiexec -np 2000 /u/scicon/tools/bin/mbind.x -gm -cs /nobackup/ajesani/myenv/bin/python "/nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/QkNN - ARCENE - T5.py"
 
 # End of script
