@@ -45,12 +45,12 @@ pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "ls /nobackup/ajesani/myenv/bi
 pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "ls /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv"
 
 # Copy virtual environment and ARCENE directory to TMPDIR
-pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "cp -r /nobackup/ajesani/myenv \$TMPDIR/"
-pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "cp -r /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE \$TMPDIR/"
+#pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "cp -r /nobackup/ajesani/myenv \$TMPDIR/"
+#pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "cp -r /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE \$TMPDIR/"
 
 # Execute the Python script using mpiexec with retries
 /u/scicon/tools/bin/several_tries -n 2 \
-mpiexec -np 1125 /u/scicon/tools/bin/mbind.x -gm -cs \$TMPDIR/myenv/bin/python "\$TMPDIR/ARCENE/QkNN - ARCENE - T4.py"
+mpiexec -np 1125 /u/scicon/tools/bin/mbind.x -gm -cs /nobackup/ajesani/myenv/bin/python "/nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/QkNN - ARCENE - T4.py"
 
 # Clean TMPDIR after job completion
 pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "rm -rf \$TMPDIR/*"
