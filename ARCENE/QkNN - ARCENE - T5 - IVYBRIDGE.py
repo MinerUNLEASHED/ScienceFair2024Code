@@ -65,12 +65,13 @@ def compute_kernel(feature_map, X1, X2=None):
 def quantum_knn(test_kernel_matrix, train_kernel_matrix, y_train, k=3):
     predictions = []
     for i in range(test_kernel_matrix.shape[0]):
-        distances = 1 - test_kernel_matrix[i, :]
-        k_nearest_indices = distances.argsort()[:k]
-        k_nearest_labels = y_train.iloc[k_nearest_indices].values
-        predicted_label = mode(k_nearest_labels, keepdims=True).mode[0]
+        distances = 1 - test_kernel_matrix[i, :]  # Calculate "distance" (inverse of similarity)
+        k_nearest_indices = distances.argsort()[:k]  # Get indices of k-nearest neighbors
+        k_nearest_labels = y_train.iloc[k_nearest_indices].values  # Get labels of nearest neighbors
+        predicted_label = mode(k_nearest_labels, keepdims=False).mode[0]  # Fix keepdims
         predictions.append(predicted_label)
     return np.array(predictions)
+
 
 # All processes create the same feature map
 feature_map = create_feature_map(local_features.shape[1])
@@ -78,10 +79,15 @@ feature_map = create_feature_map(local_features.shape[1])
 # Compute train kernel on local data
 local_train_kernel = compute_kernel(feature_map, local_features)
 
+# Ensure all processes send non-empty matrices (placeholder if empty)
+if local_train_kernel.size == 0:
+    local_train_kernel = np.zeros((1, local_features.shape[1]))
+
 # Gather train kernels on root process
 train_kernel_matrix = comm.gather(local_train_kernel, root=0)
 if rank == 0:
-    train_kernel_matrix = np.vstack(train_kernel_matrix)
+    # Filter out empty matrices before stacking
+    train_kernel_matrix = np.vstack([matrix for matrix in train_kernel_matrix if matrix.size > 0])
 
 # Compute test kernel on root process
 if rank == 0:
@@ -92,8 +98,8 @@ else:
 # Broadcast test kernel to all processes
 test_kernel_matrix = comm.bcast(test_kernel_matrix, root=0)
 
-# Perform k-NN on local data
-local_predictions = quantum_knn(test_kernel_matrix, local_train_kernel, local_labels)
+# Perform k-NN on local data using global labels
+local_predictions = quantum_knn(test_kernel_matrix, local_train_kernel, labels)
 
 # Gather predictions on root process
 predictions = comm.gather(local_predictions, root=0)
