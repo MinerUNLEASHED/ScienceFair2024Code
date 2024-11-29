@@ -4,7 +4,7 @@ from datetime import datetime
 
 import numpy as np
 import pandas as pd
-from dask.distributed import Client, LocalCluster
+import ray
 
 from qiskit.circuit.library import ZZFeatureMap
 from qiskit_machine_learning.kernels import FidelityQuantumKernel
@@ -12,9 +12,8 @@ from scipy.stats import mode
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 
-# Initialize Dask LocalCluster without the diagnostic dashboard
-cluster = LocalCluster(n_workers=20, threads_per_worker=1, memory_limit="50GB", dashboard_address=':0')
-client = Client(cluster)
+# Initialize Ray without a dashboard
+ray.init(include_dashboard=False)
 
 # Load the ARCENE dataset
 base_dir = os.getenv("TMPDIR", "/nobackup/")  # Use TMPDIR for distributed file locations
@@ -30,7 +29,8 @@ labels = dataset.iloc[:, -1]  # The last column is the label
 n = 5
 print(f"Quantum k-NN experiment will run {n} times")
 
-# Quantum k-NN function
+# Quantum k-NN function (decorated for Ray)
+@ray.remote
 def quantum_knn(test_kernel_matrix, train_kernel_matrix, y_train, k=3):
     predictions = []
     for i in range(test_kernel_matrix.shape[0]):
@@ -42,6 +42,7 @@ def quantum_knn(test_kernel_matrix, train_kernel_matrix, y_train, k=3):
     return np.array(predictions)
 
 # Function to perform a single experiment run and record results
+@ray.remote
 def run_qknn_experiment(run_index, X_train, X_test, y_train, y_test, train_kernel_matrix, test_kernel_matrix, timings):
     results = []
 
@@ -66,7 +67,7 @@ def run_qknn_experiment(run_index, X_train, X_test, y_train, y_test, train_kerne
     # Evaluate for each k value
     for k in k_values:
         qknn_start_time = time.time()
-        y_pred = quantum_knn(test_kernel_matrix, train_kernel_matrix, y_train, k=k)
+        y_pred = ray.get(quantum_knn.remote(test_kernel_matrix, train_kernel_matrix, y_train, k=k))
         qknn_end_time = time.time()
 
         # Evaluate accuracy
@@ -122,12 +123,21 @@ timings = {
 }
 
 # Execute experiment runs
+experiment_results = []
 for i in range(1, n + 1):
-    run_results = run_qknn_experiment(i, X_train, X_test, y_train, y_test, train_kernel_matrix, test_kernel_matrix, timings)
+    run_results_ref = run_qknn_experiment.remote(
+        i, X_train, X_test, y_train, y_test, train_kernel_matrix, test_kernel_matrix, timings
+    )
+    experiment_results.append(run_results_ref)
+
+# Gather results from Ray
+experiment_results = ray.get(experiment_results)
+
+for i, run_results in enumerate(experiment_results, 1):
     results_df = pd.DataFrame(run_results)
     output_file = os.path.join(base_dir, f"ARCENE_QkNN_Run_{i}_{datetime.now().strftime('%m-%d-%Y_%H-%M-%S')}.csv")
     results_df.to_csv(output_file, index=False)
     print(f"Run {i} completed. Results saved to {output_file}")
 
-# Close Dask client
-client.close()
+# Shutdown Ray
+ray.shutdown()
