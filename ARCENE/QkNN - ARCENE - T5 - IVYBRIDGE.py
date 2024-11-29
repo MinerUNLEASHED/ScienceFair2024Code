@@ -4,13 +4,18 @@ from datetime import datetime
 
 import numpy as np
 import pandas as pd
-from joblib import Parallel, delayed  # Importing Joblib for parallel execution
+from dask import delayed
+from dask.distributed import Client, LocalCluster
 
 from qiskit.circuit.library import ZZFeatureMap
 from qiskit_machine_learning.kernels import FidelityQuantumKernel
 from scipy.stats import mode
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
+
+# Initialize Dask Client for distributed execution
+client = Client()  # Automatically detects PBS environment
+print(client)
 
 # Load the ARCENE dataset
 base_dir = os.path.dirname(os.path.abspath(__file__))  # Use script directory for file locations
@@ -27,19 +32,23 @@ n = 5
 print(f"Quantum k-NN experiment will run {n} times")
 
 # Distributed Quantum Feature Map Creation
+@delayed
 def create_feature_map(num_features, reps=2, entanglement="linear"):
     return ZZFeatureMap(feature_dimension=num_features, reps=reps, entanglement=entanglement)
 
 # Distributed Quantum Kernel Computation
+@delayed
 def compute_train_kernel(feature_map, X_train):
     quantum_kernel = FidelityQuantumKernel(feature_map=feature_map)
     return quantum_kernel.evaluate(x_vec=X_train)
 
+@delayed
 def compute_test_kernel(feature_map, X_test, X_train):
     quantum_kernel = FidelityQuantumKernel(feature_map=feature_map)
     return quantum_kernel.evaluate(x_vec=X_test, y_vec=X_train)
 
 # Quantum k-NN function
+@delayed
 def quantum_knn(test_kernel_matrix, train_kernel_matrix, y_train, k=3):
     predictions = []
     for i in range(test_kernel_matrix.shape[0]):
@@ -51,6 +60,7 @@ def quantum_knn(test_kernel_matrix, train_kernel_matrix, y_train, k=3):
     return np.array(predictions)
 
 # Experiment function
+@delayed
 def run_qknn_experiment(run_index, X_train, X_test, y_train, y_test, train_kernel_matrix, test_kernel_matrix, timings):
     results = []
 
@@ -74,9 +84,7 @@ def run_qknn_experiment(run_index, X_train, X_test, y_train, y_test, train_kerne
 
     # Evaluate for each k value
     for k in k_values:
-        qknn_start_time = time.time()
-        y_pred = quantum_knn(test_kernel_matrix, train_kernel_matrix, y_train, k=k)
-        qknn_end_time = time.time()
+        y_pred = quantum_knn(test_kernel_matrix, train_kernel_matrix, y_train, k=k).compute()
 
         # Evaluate accuracy
         accuracy = accuracy_score(y_test, y_pred)
@@ -89,7 +97,7 @@ def run_qknn_experiment(run_index, X_train, X_test, y_train, y_test, train_kerne
             'Feature Map Time': 'N/A',
             'Train Kernel Time': 'N/A',
             'Test Kernel Time': 'N/A',
-            'QkNN Time': qknn_end_time - qknn_start_time,
+            'QkNN Time': 'N/A',
             'Accuracy': accuracy,
             'Date': datetime.now().strftime("%m/%d/%Y"),
         })
@@ -111,16 +119,12 @@ print("Creating feature map")
 num_features = X_train.shape[1]
 feature_map = create_feature_map(num_features)
 
-# Distributed kernel computation using Joblib
+# Distributed kernel computation
 print("Computing train kernel matrix")
-train_kernel_matrix = Parallel(n_jobs=-1)(
-    delayed(compute_train_kernel)(feature_map, X_train) for _ in range(1)
-)[0]
+train_kernel_matrix = compute_train_kernel(feature_map, X_train)
 
 print("Computing test kernel matrix")
-test_kernel_matrix = Parallel(n_jobs=-1)(
-    delayed(compute_test_kernel)(feature_map, X_test, X_train) for _ in range(1)
-)[0]
+test_kernel_matrix = compute_test_kernel(feature_map, X_test, X_train)
 
 timings = {
     'Normalization Time': norm_end_time - norm_start_time,
@@ -129,18 +133,19 @@ timings = {
     'Test Kernel Time': "Distributed"
 }
 
-# Execute experiment runs using Joblib
+# Execute experiment runs
 print("Running experiments")
-experiment_results = Parallel(n_jobs=-1)(
-    delayed(run_qknn_experiment)(
-        i, X_train, X_test, y_train, y_test, train_kernel_matrix, test_kernel_matrix, timings
-    )
-    for i in range(1, n + 1)
-)
+experiment_results = []
+for i in range(1, n + 1):
+    run_results = run_qknn_experiment(i, X_train, X_test, y_train, y_test, train_kernel_matrix, test_kernel_matrix, timings)
+    experiment_results.append(run_results)
 
 # Save results to files
 for i, run_results in enumerate(experiment_results, 1):
-    results_df = pd.DataFrame(run_results)
+    results_df = pd.DataFrame(run_results.compute())
     output_file = os.path.join(base_dir, f"ARCENE_QkNN_Run_{i}_{datetime.now().strftime('%m-%d-%Y_%H-%M-%S')}.csv")
     results_df.to_csv(output_file, index=False)
     print(f"Run {i} completed. Results saved to {output_file}")
+
+# Shutdown Dask client
+client.close()
