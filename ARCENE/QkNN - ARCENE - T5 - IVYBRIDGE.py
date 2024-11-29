@@ -5,18 +5,22 @@ from datetime import datetime
 import numpy as np
 import pandas as pd
 import ray
-
 from qiskit.circuit.library import ZZFeatureMap
 from qiskit_machine_learning.kernels import FidelityQuantumKernel
 from scipy.stats import mode
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 
-# Initialize Ray without a dashboard
-ray.init(include_dashboard=False)
+# Initialize Ray with PBS allocated resources
+head_node = os.getenv("PBS_O_HOST", "localhost")
+ray.init(
+    include_dashboard=False,
+    address=f"{head_node}:6379" if head_node != "localhost" else None,
+    runtime_env={"env_vars": {"OMP_NUM_THREADS": "1"}}
+)
 
 # Load the ARCENE dataset
-base_dir = os.getenv("TMPDIR", "/nobackup/")  # Use TMPDIR for distributed file locations
+base_dir = os.path.dirname(os.path.abspath(__file__))  # Use TMPDIR for distributed file locations
 file_path = os.path.join(base_dir, 'Standardized_ARCENE_Dataset.csv')  # Full path to dataset
 print(f"Loading dataset from {file_path}")
 dataset = pd.read_csv(file_path)

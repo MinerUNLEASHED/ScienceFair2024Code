@@ -56,7 +56,7 @@ pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "ls /nobackup/ajesani/qknn_arc
 #pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "cp -r /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE \$TMPDIR/"
 
 # Use versionless MPT library
-mpiexec -np 1000 /u/scicon/tools/bin/mbind.x -gm -cs /nobackup/ajesani/myenv/bin/python "/nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/QkNN - ARCENE - T5 - IVYBRIDGE.py"
+mpiexec -np 1000 /u/scicon/tools/bin/mbind.x -gmc -cs /nobackup/ajesani/myenv/bin/python "/nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/QkNN - ARCENE - T5 - IVYBRIDGE.py"
 
 # Clean up TMPDIR (handle read-only filesystem errors gracefully)
 #pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "rm -rf \$TMPDIR/* 2>/dev/null || true"
