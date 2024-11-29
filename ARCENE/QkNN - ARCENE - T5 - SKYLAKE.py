@@ -19,7 +19,10 @@ size = comm.Get_size()
 
 # Load dataset on root process
 if rank == 0:
-    base_dir = os.path.dirname(os.path.abspath(__file__))
+    try:
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+    except NameError:
+        base_dir = os.getcwd()
     file_path = os.path.join(base_dir, 'Standardized_ARCENE_Dataset.csv')
     print(f"Loading dataset from {file_path}")
     dataset = pd.read_csv(file_path)
@@ -36,7 +39,8 @@ labels = dataset.iloc[:, -1]
 # Normalize dataset on root process
 if rank == 0:
     norm_start_time = time.time()
-    normalized_features = features / np.linalg.norm(features, axis=1, keepdims=True)
+    features_array = features.values  # Convert to NumPy array
+    normalized_features = features_array / np.linalg.norm(features_array, axis=1, keepdims=True)
     norm_end_time = time.time()
     print(f"Normalization completed in {norm_end_time - norm_start_time:.2f} seconds.")
 else:
@@ -51,6 +55,11 @@ if rank == 0:
     X_train, X_test, y_train, y_test = train_test_split(
         normalized_features, labels, test_size=0.2, random_state=42
     )
+    # Convert to NumPy arrays (if not already)
+    X_train = np.array(X_train)
+    X_test = np.array(X_test)
+    y_train = np.array(y_train)
+    y_test = np.array(y_test)
 else:
     X_train = None
     X_test = None
@@ -76,6 +85,8 @@ def create_feature_map(num_features, reps=2, entanglement="linear"):
 # Compute quantum kernel
 def compute_kernel(feature_map, X1, X2=None):
     quantum_kernel = FidelityQuantumKernel(feature_map=feature_map)
+    X1 = np.array(X1)
+    X2 = np.array(X2) if X2 is not None else None
     return quantum_kernel.evaluate(x_vec=X1, y_vec=X2)
 
 # Quantum k-NN function
@@ -85,7 +96,7 @@ def quantum_knn(test_kernel_matrix, train_kernel_matrix, y_train, k=3):
         distances = 1 - test_kernel_matrix[i, :]  # Calculate "distance" (inverse of similarity)
         k_nearest_indices = distances.argsort()[:k]  # Get indices of k-nearest neighbors
         k_nearest_labels = np.array(y_train)[k_nearest_indices]  # Get labels of nearest neighbors
-        predicted_label = mode(k_nearest_labels, keepdims=False).mode[0]
+        predicted_label = mode(k_nearest_labels).mode[0]
         predictions.append(predicted_label)
     return np.array(predictions)
 
@@ -110,7 +121,7 @@ if rank == 0:
     train_kernel_matrix = np.vstack(train_kernels)  # Shape: (n_train_samples, n_train_samples)
 
     # Concatenate test_kernels horizontally to form test_kernel_matrix
-    test_kernel_matrix = np.hstack(test_kernels).T  # Transpose to match dimensions
+    test_kernel_matrix = np.hstack(test_kernels)  # Shape: (n_test_samples, n_train_samples)
 
     # Perform k-NN on root process
     predictions = quantum_knn(test_kernel_matrix, train_kernel_matrix, y_train)

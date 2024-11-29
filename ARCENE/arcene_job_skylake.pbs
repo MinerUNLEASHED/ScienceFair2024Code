@@ -1,0 +1,51 @@
+#!/bin/bash
+#PBS -N qknn_arcene_t2
+# Job name
+
+#PBS -S /bin/bash
+# Use the Bash shell interpreter
+
+#PBS -l select=50:ncpus=20:mpiprocs=20:model=sky_ele:mem=160GB
+# Request 50 Skylake nodes with 20 CPUs, 20 MPI processes per node, and 50 GB of memory per node
+
+#PBS -l walltime=8:00:00
+# Maximum runtime of 8 hours
+
+#PBS -j oe
+# Combine stdout and stderr into a single file
+
+#PBS -W group_list=n2217
+# Specify your project group
+
+#PBS -M 100032493@ccisd.net
+# Email address for notifications
+
+#PBS -m abe
+# Notify on abort, begin, and end
+
+# Export environment variables for MPI
+export MPI_LAUNCH_TIMEOUT=60
+export MPI_SHEPHERD=true
+export PATH=/nobackup/ajesani/myenv/bin:$PATH
+export SITE_NEEDED="/nobackup"
+
+# Load required modules
+module load comp-intel/2020.4.304
+module load mpi-hpe/mpt
+module load python3
+
+# Change to the directory where the job was submitted
+cd ~
+
+# Activate the pre-existing virtual environment
+source /nobackup/ajesani/myenv/bin/activate
+
+# Verify necessary files exist
+pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "ls /nobackup/ajesani/myenv/bin/python || exit 1"
+pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "ls /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv || exit 1"
+
+# Use versionless MPT library for MPI execution
+mpiexec -np 1000 /u/scicon/tools/bin/mbind.x -gmc -cs "/nobackup/ajesani/myenv/bin/python" "/nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/QkNN - ARCENE - T5 - SKYLAKE.py"
+
+# Clean up TMPDIR (optional, handle gracefully)
+#pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "rm -rf \$TMPDIR/* 2>/dev/null || true"
