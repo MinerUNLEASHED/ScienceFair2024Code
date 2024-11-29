@@ -46,20 +46,38 @@ else:
 normalized_features = comm.bcast(normalized_features, root=0)
 labels = comm.bcast(labels, root=0)
 
-# Split data across processes
-split_data = np.array_split(normalized_features, size, axis=0)
-split_labels = np.array_split(labels, size, axis=0)
-local_features = split_data[rank]
-local_labels = split_labels[rank]
+# Split data into training and testing sets on root process
+if rank == 0:
+    X_train, X_test, y_train, y_test = train_test_split(
+        normalized_features, labels, test_size=0.2, random_state=42
+    )
+else:
+    X_train = None
+    X_test = None
+    y_train = None
+    y_test = None
+
+# Broadcast X_test and y_test to all processes
+X_test = comm.bcast(X_test, root=0)
+y_test = comm.bcast(y_test, root=0)
+
+# Split X_train across processes
+split_data = np.array_split(X_train, size, axis=0)
+split_labels = np.array_split(y_train, size, axis=0)
+local_X_train = split_data[rank]
+local_y_train = split_labels[rank]
+
 
 # Create feature map
 def create_feature_map(num_features, reps=2, entanglement="linear"):
     return ZZFeatureMap(feature_dimension=num_features, reps=reps, entanglement=entanglement)
 
+
 # Compute quantum kernel
 def compute_kernel(feature_map, X1, X2=None):
     quantum_kernel = FidelityQuantumKernel(feature_map=feature_map)
     return quantum_kernel.evaluate(x_vec=X1, y_vec=X2)
+
 
 # Quantum k-NN function
 def quantum_knn(test_kernel_matrix, train_kernel_matrix, y_train, k=3):
@@ -67,46 +85,43 @@ def quantum_knn(test_kernel_matrix, train_kernel_matrix, y_train, k=3):
     for i in range(test_kernel_matrix.shape[0]):
         distances = 1 - test_kernel_matrix[i, :]  # Calculate "distance" (inverse of similarity)
         k_nearest_indices = distances.argsort()[:k]  # Get indices of k-nearest neighbors
-        k_nearest_labels = y_train.iloc[k_nearest_indices].values  # Get labels of nearest neighbors
-        predicted_label = mode(k_nearest_labels, keepdims=False).mode[0]  # Fix keepdims
+        k_nearest_labels = np.array(y_train)[k_nearest_indices]  # Get labels of nearest neighbors
+        predicted_label = mode(k_nearest_labels, keepdims=False).mode[0]
         predictions.append(predicted_label)
     return np.array(predictions)
 
 
 # All processes create the same feature map
-feature_map = create_feature_map(local_features.shape[1])
+feature_map = create_feature_map(local_X_train.shape[1])
 
-# Compute train kernel on local data
-local_train_kernel = compute_kernel(feature_map, local_features)
+# Each process computes local train kernel between local_X_train and X_train
+local_train_kernel = compute_kernel(feature_map, local_X_train, X_train)
 
-# Ensure all processes send non-empty matrices (placeholder if empty)
-if local_train_kernel.size == 0:
-    local_train_kernel = np.zeros((1, local_features.shape[1]))
+# Each process computes local test kernel between X_test and local_X_train
+local_test_kernel = compute_kernel(feature_map, X_test, local_X_train)
 
-# Gather train kernels on root process
-train_kernel_matrix = comm.gather(local_train_kernel, root=0)
+# Gather local_train_kernel to root process
+train_kernels = comm.gather(local_train_kernel, root=0)
+
+# Gather local_test_kernel to root process
+test_kernels = comm.gather(local_test_kernel, root=0)
+
+# Root process assembles full train and test kernel matrices
 if rank == 0:
-    # Filter out empty matrices before stacking
-    train_kernel_matrix = np.vstack([matrix for matrix in train_kernel_matrix if matrix.size > 0])
+    # Stack train_kernels vertically to form train_kernel_matrix
+    train_kernel_matrix = np.vstack(train_kernels)  # Shape: (n_train_samples, n_train_samples)
 
-# Compute test kernel on root process
-if rank == 0:
-    test_kernel_matrix = compute_kernel(feature_map, normalized_features, normalized_features)
-else:
-    test_kernel_matrix = None
+    # Concatenate test_kernels horizontally to form test_kernel_matrix
+    test_kernel_matrix = np.hstack(test_kernels)  # Shape: (n_test_samples, n_train_samples)
 
-# Broadcast test kernel to all processes
-test_kernel_matrix = comm.bcast(test_kernel_matrix, root=0)
+    # Perform k-NN on root process
+    predictions = quantum_knn(test_kernel_matrix, train_kernel_matrix, y_train)
 
-# Perform k-NN on local data using global labels
-local_predictions = quantum_knn(test_kernel_matrix, local_train_kernel, labels)
+    # Compute accuracy
+    accuracy = accuracy_score(y_test, predictions)
+    print(f"Test accuracy: {accuracy:.2%}")
 
-# Gather predictions on root process
-predictions = comm.gather(local_predictions, root=0)
-
-# Root process saves results
-if rank == 0:
-    predictions = np.hstack(predictions)
+    # Save predictions
     output_file = os.path.join(base_dir, f"Predictions_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.csv")
     pd.DataFrame(predictions, columns=["Predictions"]).to_csv(output_file, index=False)
     print(f"Results saved to {output_file}")
