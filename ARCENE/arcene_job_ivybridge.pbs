@@ -35,12 +35,30 @@ module load mpi-hpe/mpt
 module load python3
 
 # Change to the directory where the job was submitted
-cd ~
+cd ~  # Ensure you're in the home directory
+
+# Ensure all necessary filesystems are mounted
+export SITE_NEEDED="/nobackup"
 
 # Activate the pre-existing virtual environment
 source /nobackup/ajesani/myenv/bin/activate
 
-# Run Python script
-mpiexec -np 1000 python /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/QkNN - ARCENE - T5 - IVYBRIDGE.py
+# Clean up TMPDIR (handle read-only filesystem errors gracefully)
+#pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "rm -rf \$TMPDIR/* 2>/dev/null || true"
 
+# Verify files exist before proceeding
+pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "ls /nobackup/ajesani/myenv/bin/python || exit 1"
+pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "ls /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv || exit 1"
+#pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "ls /nobackup"
 
+# Copy required files to TMPDIR
+#pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "cp -r /nobackup/ajesani/myenv \$TMPDIR/"
+#pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "cp -r /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE \$TMPDIR/"
+
+# Use versionless MPT library
+mpiexec -np 1000 /u/scicon/tools/bin/mbind.x -gm -cs /nobackup/ajesani/myenv/bin/python "/nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/QkNN - ARCENE - T5 - IVYBRIDGE.py"
+
+# Clean up TMPDIR (handle read-only filesystem errors gracefully)
+#pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "rm -rf \$TMPDIR/* 2>/dev/null || true"
+
+# End of script
