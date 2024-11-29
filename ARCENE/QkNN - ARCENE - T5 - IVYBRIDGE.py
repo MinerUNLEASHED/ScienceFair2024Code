@@ -13,7 +13,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 
 # Initialize Dask LocalCluster without the diagnostic dashboard
-cluster = LocalCluster(n_workers=20, threads_per_worker=1, memory_limit="50GB", dashboard_address=None)
+cluster = LocalCluster(n_workers=20, threads_per_worker=1, memory_limit="50GB", dashboard_address=':0')
 client = Client(cluster)
 
 # Load the ARCENE dataset
