@@ -57,8 +57,10 @@ else:
     y_train = None
     y_test = None
 
-# Broadcast X_test and y_test to all processes
+# Broadcast X_train, X_test, y_train, and y_test to all processes
+X_train = comm.bcast(X_train, root=0)
 X_test = comm.bcast(X_test, root=0)
+y_train = comm.bcast(y_train, root=0)
 y_test = comm.bcast(y_test, root=0)
 
 # Split X_train across processes
@@ -67,17 +69,14 @@ split_labels = np.array_split(y_train, size, axis=0)
 local_X_train = split_data[rank]
 local_y_train = split_labels[rank]
 
-
 # Create feature map
 def create_feature_map(num_features, reps=2, entanglement="linear"):
     return ZZFeatureMap(feature_dimension=num_features, reps=reps, entanglement=entanglement)
-
 
 # Compute quantum kernel
 def compute_kernel(feature_map, X1, X2=None):
     quantum_kernel = FidelityQuantumKernel(feature_map=feature_map)
     return quantum_kernel.evaluate(x_vec=X1, y_vec=X2)
-
 
 # Quantum k-NN function
 def quantum_knn(test_kernel_matrix, train_kernel_matrix, y_train, k=3):
@@ -89,7 +88,6 @@ def quantum_knn(test_kernel_matrix, train_kernel_matrix, y_train, k=3):
         predicted_label = mode(k_nearest_labels, keepdims=False).mode[0]
         predictions.append(predicted_label)
     return np.array(predictions)
-
 
 # All processes create the same feature map
 feature_map = create_feature_map(local_X_train.shape[1])
@@ -112,7 +110,7 @@ if rank == 0:
     train_kernel_matrix = np.vstack(train_kernels)  # Shape: (n_train_samples, n_train_samples)
 
     # Concatenate test_kernels horizontally to form test_kernel_matrix
-    test_kernel_matrix = np.hstack(test_kernels)  # Shape: (n_test_samples, n_train_samples)
+    test_kernel_matrix = np.hstack(test_kernels).T  # Transpose to match dimensions
 
     # Perform k-NN on root process
     predictions = quantum_knn(test_kernel_matrix, train_kernel_matrix, y_train)
