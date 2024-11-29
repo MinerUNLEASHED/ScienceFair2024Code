@@ -5,8 +5,8 @@
 #PBS -S /bin/bash
 # Use the Bash shell interpreter
 
-#PBS -l select=100:ncpus=128:mpiprocs=128:model=mil_ait:mem=430GB
-# Request 100 Milan nodes with 128 CPUs, 128 MPI processes per node, and a memory limit of 430GB per node
+#PBS -l select=50:ncpus=128:mpiprocs=128:model=mil_ait:mem=430GB
+# Request 50 Milan nodes with 128 CPUs, 128 MPI processes per node, and a memory limit of 430GB per node
 
 #PBS -l walltime=8:00:00
 # Maximum runtime of 8 hours
@@ -42,6 +42,6 @@ pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "ls /nobackup/ajesani/qknn_arc
 
 # Pin processes and monitor memory usage with mbind.x
 export OMP_NUM_THREADS=1  # Set OpenMP threads to 1 since we are maximizing MPI processes
-mpiexec -np 12800 /u/scicon/tools/bin/mbind.x -cs -t1 -v /nobackup/ajesani/myenv/bin/python "/nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/QkNN - ARCENE - T5.py"
+mpiexec -np 6400 /u/scicon/tools/bin/mbind.x -cs -t1 -v /nobackup/ajesani/myenv/bin/python "/nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/QkNN - ARCENE - T5 - MILAN.py"
 
 # End of script
