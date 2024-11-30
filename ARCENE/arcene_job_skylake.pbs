@@ -45,7 +45,7 @@ pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "ls /nobackup/ajesani/myenv/bi
 pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "ls /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv || exit 1"
 
 # Use versionless MPT library for MPI execution
-mpiexec -np 1000 /u/scicon/tools/bin/mbind.x -gmc -cs "/nobackup/ajesani/myenv/bin/python" "/nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/QkNN - ARCENE - T5 - SKYLAKE.py"
+mpiexec -np 1000 /u/scicon/tools/bin/mbind.x -gm -cs "/nobackup/ajesani/myenv/bin/python" "/nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/QkNN - ARCENE - T5 - SKYLAKE.py"
 
 # Clean up TMPDIR (optional, handle gracefully)
 #pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "rm -rf \$TMPDIR/* 2>/dev/null || true"

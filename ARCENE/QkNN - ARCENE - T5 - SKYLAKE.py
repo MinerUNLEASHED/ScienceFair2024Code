@@ -12,7 +12,7 @@ from scipy.stats import mode
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 
-# Set environment variables for thread optimization (specific to SkyLake nodes)
+# Set environment variables for thread optimization
 os.environ["MKL_NUM_THREADS"] = "1"
 os.environ["NUMEXPR_NUM_THREADS"] = "1"
 os.environ["OMP_NUM_THREADS"] = "1"
@@ -29,6 +29,8 @@ if rank == 0:
     except NameError:
         base_dir = os.getcwd()
     file_path = os.path.join(base_dir, 'Standardized_ARCENE_Dataset.csv')
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(f"Dataset file not found at {file_path}")
     print(f"Loading dataset from {file_path}")
     dataset = pd.read_csv(file_path)
 else:
@@ -38,14 +40,13 @@ else:
 dataset = comm.bcast(dataset, root=0)
 
 # Separate features and labels
-features = dataset.iloc[:, :-1]
-labels = dataset.iloc[:, -1]
+features = dataset.iloc[:, :-1].to_numpy()  # Ensure data is in NumPy array format
+labels = dataset.iloc[:, -1].to_numpy()
 
 # Normalize dataset on root process
 if rank == 0:
     norm_start_time = time.time()
-    features_array = features.values  # Convert to NumPy array
-    normalized_features = features_array / np.linalg.norm(features_array, axis=1, keepdims=True)
+    normalized_features = features / np.linalg.norm(features, axis=1, keepdims=True)
     norm_end_time = time.time()
     print(f"Normalization completed in {norm_end_time - norm_start_time:.2f} seconds.")
 else:
@@ -53,7 +54,7 @@ else:
 
 # Broadcast normalized features and labels
 normalized_features = comm.bcast(normalized_features, root=0)
-labels = comm.bcast(labels.values, root=0)  # Broadcast labels as a NumPy array
+labels = comm.bcast(labels, root=0)
 
 # Split data into training and testing sets on root process
 if rank == 0:
@@ -82,7 +83,8 @@ def create_feature_map(num_features, reps=2, entanglement="linear"):
 # Compute quantum kernel
 def compute_kernel(feature_map, X1, X2=None):
     quantum_kernel = FidelityQuantumKernel(feature_map=feature_map)
-    return quantum_kernel.evaluate(x_vec=np.array(X1), y_vec=np.array(X2) if X2 is not None else None)
+    X2 = X2 if X2 is not None else X1  # Default to self-similarity
+    return quantum_kernel.evaluate(x_vec=X1, y_vec=X2)
 
 # Quantum k-NN function
 def quantum_knn(test_kernel_matrix, train_kernel_matrix, y_train, k=3):
