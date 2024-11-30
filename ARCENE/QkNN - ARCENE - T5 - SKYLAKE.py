@@ -12,6 +12,11 @@ from scipy.stats import mode
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 
+# Set environment variables for thread optimization (specific to SkyLake nodes)
+os.environ["MKL_NUM_THREADS"] = "1"
+os.environ["NUMEXPR_NUM_THREADS"] = "1"
+os.environ["OMP_NUM_THREADS"] = "1"
+
 # Initialize MPI
 comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
@@ -55,16 +60,8 @@ if rank == 0:
     X_train, X_test, y_train, y_test = train_test_split(
         normalized_features, labels, test_size=0.2, random_state=42
     )
-    # Convert to NumPy arrays (if not already)
-    X_train = np.array(X_train)
-    X_test = np.array(X_test)
-    y_train = np.array(y_train)
-    y_test = np.array(y_test)
 else:
-    X_train = None
-    X_test = None
-    y_train = None
-    y_test = None
+    X_train, X_test, y_train, y_test = None, None, None, None
 
 # Broadcast X_train, X_test, y_train, and y_test to all processes
 X_train = comm.bcast(X_train, root=0)
@@ -85,9 +82,7 @@ def create_feature_map(num_features, reps=2, entanglement="linear"):
 # Compute quantum kernel
 def compute_kernel(feature_map, X1, X2=None):
     quantum_kernel = FidelityQuantumKernel(feature_map=feature_map)
-    X1 = np.array(X1)
-    X2 = np.array(X2) if X2 is not None else None
-    return quantum_kernel.evaluate(x_vec=X1, y_vec=X2)
+    return quantum_kernel.evaluate(x_vec=np.array(X1), y_vec=np.array(X2) if X2 is not None else None)
 
 # Quantum k-NN function
 def quantum_knn(test_kernel_matrix, train_kernel_matrix, y_train, k=3):
@@ -96,8 +91,7 @@ def quantum_knn(test_kernel_matrix, train_kernel_matrix, y_train, k=3):
         distances = 1 - test_kernel_matrix[i, :]  # Calculate "distance" (inverse of similarity)
         k_nearest_indices = distances.argsort()[:k]  # Get indices of k-nearest neighbors
         k_nearest_labels = np.array(y_train)[k_nearest_indices]  # Get labels of nearest neighbors
-        predicted_label = mode(k_nearest_labels).mode[0]
-        predictions.append(predicted_label)
+        predictions.append(mode(k_nearest_labels).mode[0])
     return np.array(predictions)
 
 # All processes create the same feature map
@@ -117,20 +111,13 @@ test_kernels = comm.gather(local_test_kernel, root=0)
 
 # Root process assembles full train and test kernel matrices
 if rank == 0:
-    # Stack train_kernels vertically to form train_kernel_matrix
-    train_kernel_matrix = np.vstack(train_kernels)  # Shape: (n_train_samples, n_train_samples)
+    train_kernel_matrix = np.vstack(train_kernels)
+    test_kernel_matrix = np.hstack(test_kernels)
 
-    # Concatenate test_kernels horizontally to form test_kernel_matrix
-    test_kernel_matrix = np.hstack(test_kernels)  # Shape: (n_test_samples, n_train_samples)
-
-    # Perform k-NN on root process
     predictions = quantum_knn(test_kernel_matrix, train_kernel_matrix, y_train)
-
-    # Compute accuracy
     accuracy = accuracy_score(y_test, predictions)
     print(f"Test accuracy: {accuracy:.2%}")
 
-    # Save predictions
     output_file = os.path.join(base_dir, f"Predictions_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.csv")
     pd.DataFrame(predictions, columns=["Predictions"]).to_csv(output_file, index=False)
     print(f"Results saved to {output_file}")
