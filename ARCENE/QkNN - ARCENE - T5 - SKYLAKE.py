@@ -14,7 +14,7 @@ try:
     from sklearn.model_selection import train_test_split
 except Exception as e:
     print(f"Error during imports: {e}", file=sys.stderr)
-    sys.exit(1)
+    sys.exit(-2)
 
 # Set environment variables for thread optimization
 try:
@@ -23,7 +23,7 @@ try:
     os.environ["OMP_NUM_THREADS"] = "1"
 except Exception as e:
     print(f"Error setting environment variables: {e}", file=sys.stderr)
-    sys.exit(1)
+    sys.exit(-2)
 
 # Initialize MPI
 try:
@@ -32,12 +32,13 @@ try:
     size = comm.Get_size()
 except Exception as e:
     print(f"Error initializing MPI: {e}", file=sys.stderr)
-    sys.exit(1)
+    sys.exit(-2)
 
 def abort_on_error(error_message):
     """Abort all processes upon encountering an error."""
     print(f"Rank {rank} encountered an error: {error_message}", file=sys.stderr)
-    comm.Abort()
+    comm.Abort()  # Terminates all MPI processes
+    sys.exit(-2)  # Ensures the program exits with status -2
 
 # Load dataset on root process
 try:
