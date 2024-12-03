@@ -1,17 +1,32 @@
 import os
+print("Imported os")
+
 import sys
+print("Imported sys")
+
 import time
+print("Imported time")
+
 from datetime import datetime
+print("Imported datetime")
 
 try:
     import numpy as np
+    print("Imported numpy")
     import pandas as pd
+    print("Imported pandas")
     from mpi4py import MPI
+    print("Imported mpi4py")
     from qiskit.circuit.library import ZZFeatureMap
+    print("Imported ZZFeatureMap from qiskit")
     from qiskit_machine_learning.kernels import FidelityQuantumKernel
+    print("Imported FidelityQuantumKernel from qiskit_machine_learning")
     from scipy.stats import mode
+    print("Imported mode from scipy.stats")
     from sklearn.metrics import accuracy_score
+    print("Imported accuracy_score from sklearn.metrics")
     from sklearn.model_selection import train_test_split
+    print("Imported train_test_split from sklearn.model_selection")
 except Exception as e:
     print(f"Error during imports: {e}", file=sys.stderr)
     sys.exit(-2)
@@ -19,8 +34,11 @@ except Exception as e:
 # Set environment variables for thread optimization
 try:
     os.environ["MKL_NUM_THREADS"] = "1"
+    print("Set MKL_NUM_THREADS to 1")
     os.environ["NUMEXPR_NUM_THREADS"] = "1"
+    print("Set NUMEXPR_NUM_THREADS to 1")
     os.environ["OMP_NUM_THREADS"] = "1"
+    print("Set OMP_NUM_THREADS to 1")
 except Exception as e:
     print(f"Error setting environment variables: {e}", file=sys.stderr)
     sys.exit(-2)
@@ -28,8 +46,11 @@ except Exception as e:
 # Initialize MPI
 try:
     comm = MPI.COMM_WORLD
+    print("Initialized MPI.COMM_WORLD")
     rank = comm.Get_rank()
+    print(f"Obtained rank: {rank}")
     size = comm.Get_size()
+    print(f"Obtained size: {size}")
 except Exception as e:
     print(f"Error initializing MPI: {e}", file=sys.stderr)
     sys.exit(-2)
@@ -37,77 +58,104 @@ except Exception as e:
 def abort_on_error(error_message):
     """Abort all processes upon encountering an error."""
     print(f"Rank {rank} encountered an error: {error_message}", file=sys.stderr)
-    comm.Abort()  # Terminates all MPI processes
-    sys.exit(-2)  # Ensures the program exits with status -2
+    comm.Abort()
+    sys.exit(-2)
 
 # Load dataset on root process
 try:
     if rank == 0:
+        print("Rank 0: Attempting to load dataset")
         try:
             base_dir = os.path.dirname(os.path.abspath(__file__))
+            print(f"Base directory determined: {base_dir}")
         except NameError:
             base_dir = os.getcwd()
+            print(f"Base directory (fallback) determined: {base_dir}")
         file_path = os.path.join(base_dir, 'Standardized_ARCENE_Dataset.csv')
+        print(f"Dataset path resolved: {file_path}")
         if not os.path.exists(file_path):
             abort_on_error(f"Dataset file not found at {file_path}")
         print(f"Loading dataset from {file_path}")
         dataset = pd.read_csv(file_path)
+        print("Dataset loaded successfully")
     else:
         dataset = None
+        print(f"Rank {rank}: Dataset set to None")
 except Exception as e:
     abort_on_error(f"Error loading dataset: {e}")
 
 # Broadcast dataset to all processes
 try:
+    print("Broadcasting dataset")
     dataset = comm.bcast(dataset, root=0)
+    print("Broadcast completed")
 except Exception as e:
     abort_on_error(f"Failed to broadcast dataset: {e}")
 
 # Separate features and labels
 try:
+    print("Separating features and labels")
     features = dataset.iloc[:, :-1].to_numpy()
+    print("Features extracted")
     labels = dataset.iloc[:, -1].to_numpy()
+    print("Labels extracted")
 except Exception as e:
     abort_on_error(f"Failed to separate features and labels: {e}")
 
 # Normalize dataset on root process
 try:
     if rank == 0:
+        print("Rank 0: Normalizing dataset")
         norm_start_time = time.time()
         norms = np.linalg.norm(features, axis=1, keepdims=True)
+        print("Norms calculated")
         norms[norms == 0] = 1e-10  # Avoid division by zero
+        print("Adjusted zero norms")
         normalized_features = features / norms
+        print("Features normalized")
         norm_end_time = time.time()
         print(f"Normalization completed in {norm_end_time - norm_start_time:.2f} seconds.")
     else:
         normalized_features = None
+        print(f"Rank {rank}: Normalized features set to None")
 except Exception as e:
     abort_on_error(f"Error normalizing dataset: {e}")
 
 # Broadcast normalized features and labels
 try:
+    print("Broadcasting normalized features and labels")
     normalized_features = comm.bcast(normalized_features, root=0)
+    print("Normalized features broadcasted")
     labels = comm.bcast(labels, root=0)
+    print("Labels broadcasted")
 except Exception as e:
     abort_on_error(f"Failed to broadcast normalized data: {e}")
 
 # Split data into training and testing sets on root process
 try:
     if rank == 0:
+        print("Rank 0: Splitting data into training and testing sets")
         X_train, X_test, y_train, y_test = train_test_split(
             normalized_features, labels, test_size=0.2, random_state=42
         )
+        print("Data split into training and testing sets")
     else:
         X_train, X_test, y_train, y_test = None, None, None, None
+        print(f"Rank {rank}: Training and testing data set to None")
 except Exception as e:
     abort_on_error(f"Failed to split data: {e}")
 
 # Broadcast X_train, X_test, y_train, and y_test to all processes
 try:
+    print("Broadcasting training and testing data")
     X_train = comm.bcast(X_train, root=0)
+    print("Broadcasted X_train")
     X_test = comm.bcast(X_test, root=0)
+    print("Broadcasted X_test")
     y_train = comm.bcast(y_train, root=0)
+    print("Broadcasted y_train")
     y_test = comm.bcast(y_test, root=0)
+    print("Broadcasted y_test")
 except Exception as e:
     abort_on_error(f"Failed to broadcast training/testing data: {e}")
 
@@ -115,104 +163,29 @@ def create_subcircuits(data, num_features_per_circuit):
     """
     Split data into smaller feature subsets and create quantum feature maps.
     """
-    try:
-        num_subcircuits = data.shape[1] // num_features_per_circuit + int(data.shape[1] % num_features_per_circuit > 0)
-        subcircuits = []
-        for i in range(num_subcircuits):
-            start_idx = i * num_features_per_circuit
-            end_idx = min((i + 1) * num_features_per_circuit, data.shape[1])
-            subset = data[:, start_idx:end_idx]
-            feature_map = ZZFeatureMap(feature_dimension=subset.shape[1], reps=2, entanglement="linear")
-            subcircuits.append((subset, feature_map))
-        return subcircuits
-    except Exception as e:
-        abort_on_error(f"Failed to create subcircuits: {e}")
+    print(f"Creating subcircuits with {num_features_per_circuit} features per circuit")
+    num_subcircuits = data.shape[1] // num_features_per_circuit + int(data.shape[1] % num_features_per_circuit > 0)
+    print(f"Number of subcircuits: {num_subcircuits}")
+    subcircuits = []
+    for i in range(num_subcircuits):
+        start_idx = i * num_features_per_circuit
+        end_idx = min((i + 1) * num_features_per_circuit, data.shape[1])
+        print(f"Processing features {start_idx} to {end_idx}")
+        subset = data[:, start_idx:end_idx]
+        feature_map = ZZFeatureMap(feature_dimension=subset.shape[1], reps=2, entanglement="linear")
+        print("Created feature map")
+        subcircuits.append((subset, feature_map))
+    print("Subcircuits created successfully")
+    return subcircuits
 
-def compute_subcircuit_kernel(subcircuits_train, subcircuits_test=None):
-    """
-    Compute quantum kernels for subcircuits and aggregate results.
-    """
-    try:
-        total_kernel_train = None
-        total_kernel_test = None
-        for idx, (subset_train, feature_map) in enumerate(subcircuits_train):
-            quantum_kernel = FidelityQuantumKernel(feature_map=feature_map)
-            kernel_train = quantum_kernel.evaluate(x_vec=subset_train, y_vec=subset_train)
-            total_kernel_train = kernel_train if total_kernel_train is None else total_kernel_train + kernel_train
-            if subcircuits_test is not None:
-                subset_test = subcircuits_test[idx][0]
-                kernel_test = quantum_kernel.evaluate(x_vec=subset_test, y_vec=subset_train)
-                total_kernel_test = kernel_test if total_kernel_test is None else total_kernel_test + kernel_test
-        return total_kernel_train, total_kernel_test
-    except Exception as e:
-        abort_on_error(f"Failed to compute quantum kernel: {e}")
-
-# Split data into subcircuits
 try:
     features_per_circuit = 30  # Default number of features per circuit
+    print(f"Setting features_per_circuit to {features_per_circuit}")
+    print("Creating training subcircuits")
     subcircuits_train = create_subcircuits(X_train, features_per_circuit)
+    print("Training subcircuits created")
+    print("Creating testing subcircuits")
     subcircuits_test = create_subcircuits(X_test, features_per_circuit)
+    print("Testing subcircuits created")
 except Exception as e:
     abort_on_error(f"Error splitting data into subcircuits: {e}")
-
-# Distribute subcircuits among processes
-try:
-    num_subcircuits = len(subcircuits_train)
-    subcircuits_per_process = num_subcircuits // size
-    remainder = num_subcircuits % size
-
-    if rank < remainder:
-        start_idx = rank * (subcircuits_per_process + 1)
-        end_idx = start_idx + subcircuits_per_process + 1
-    else:
-        start_idx = rank * subcircuits_per_process + remainder
-        end_idx = start_idx + subcircuits_per_process
-
-    local_subcircuits_train = subcircuits_train[start_idx:end_idx]
-    local_subcircuits_test = subcircuits_test[start_idx:end_idx]
-except Exception as e:
-    abort_on_error(f"Error distributing subcircuits among processes: {e}")
-
-# Compute kernels for subcircuits
-try:
-    local_train_kernel, local_test_kernel = compute_subcircuit_kernel(local_subcircuits_train, local_subcircuits_test)
-except Exception as e:
-    abort_on_error(f"Error computing kernels for subcircuits: {e}")
-
-# Sum the kernel matrices across all processes
-try:
-    total_kernel_train = comm.reduce(local_train_kernel, op=MPI.SUM, root=0)
-    total_kernel_test = comm.reduce(local_test_kernel, op=MPI.SUM, root=0)
-except Exception as e:
-    abort_on_error(f"Error reducing kernel matrices: {e}")
-
-def quantum_knn(test_kernel_matrix, train_kernel_matrix, y_train, k):
-    """
-    Perform k-NN classification using quantum kernels.
-    """
-    try:
-        predictions = []
-        for i in range(test_kernel_matrix.shape[0]):
-            distances = np.sqrt(
-                np.diag(train_kernel_matrix) + test_kernel_matrix[i, i] - 2 * test_kernel_matrix[i, :]
-            )
-            k_nearest_indices = distances.argsort()[:k]
-            k_nearest_labels = np.array(y_train)[k_nearest_indices]
-            predictions.append(mode(k_nearest_labels).mode[0])
-        return np.array(predictions)
-    except Exception as e:
-        abort_on_error(f"Error in quantum k-NN function: {e}")
-
-# Root process assembles full train and test kernel matrices
-if rank == 0:
-    try:
-        predictions = quantum_knn(total_kernel_test, total_kernel_train, y_train, k=3)
-        accuracy = accuracy_score(y_test, predictions)
-        print(f"Test accuracy: {accuracy:.2%}")
-
-        # Save predictions
-        output_file = os.path.join(base_dir, f"Predictions_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.csv")
-        pd.DataFrame(predictions, columns=["Predictions"]).to_csv(output_file, index=False)
-        print(f"Results saved to {output_file}")
-    except Exception as e:
-        abort_on_error(f"Error during final prediction and saving: {e}")
