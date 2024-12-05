@@ -62,7 +62,7 @@ log("Program started...")
 try:
     if rank == 0:
         # Load and convert dataset to NumPy array
-        base_dir = os.getcwd()
+        base_dir = os.path.dirname(os.path.abspath(__file__))
         file_path = os.path.join(base_dir, 'Standardized_ARCENE_Dataset.csv')
         if not os.path.exists(file_path):
             raise FileNotFoundError(f"Dataset file not found at {file_path}")
