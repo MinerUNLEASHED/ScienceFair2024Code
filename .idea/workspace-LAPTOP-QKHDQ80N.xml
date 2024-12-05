@@ -1,0 +1,696 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="09c0ab90-0d2f-431e-907e-c8c3beed5f24" name="Changes" comment="working with skylake">
+      <change afterPath="$PROJECT_DIR$/APResCodeT1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ARCENE/QkNN - ARCENE - T5 - LOCAL.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;MinerUNLEASHED&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/MinerUNLEASHED/ScienceFair2024Code.git&quot;,
+    &quot;accountId&quot;: &quot;840557ff-05a9-474d-ba00-af05de5a2bf2&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2pR8BdYrpmUKUz95XDT5FAl2soI" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Python.APResCodeT1.executor": "Run",
+    "Python.QkNN - ARCENE - T1.executor": "Run",
+    "Python.QkNN - ARCENE - T5 - IVYBRIDGE.executor": "Run",
+    "Python.QkNN - ARCENE - T5 - LOCAL.executor": "Run",
+    "Python.QkNN - ARCENE - T5 - SKYLAKE.executor": "Run",
+    "Python.QkNN - IRIS - T1.executor": "Run",
+    "Python.QkNN - IRIS - T2.executor": "Run",
+    "Python.QkNN - IRIS - T3.executor": "Run",
+    "Python.QkNN - IRIS - T4.executor": "Run",
+    "Python.QkNN - IRIS - T5.executor": "Run",
+    "Python.QkNN - IRIS - T6.executor": "Run",
+    "Python.QkNN - IRIS - T7.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/azhme/OneDrive - Clear Creek ISD/Files/School/11th Grade/Science Fair/ScienceFair2024Code/ARCENE",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\azhme\OneDrive - Clear Creek ISD\Files\School\11th Grade\Science Fair\ScienceFair2024Code\ARCENE" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\azhme\OneDrive - Clear Creek ISD\Files\School\11th Grade\Science Fair\ScienceFair2024Code\ARCENE" />
+      <recent name="C:\Users\azhme\OneDrive - Clear Creek ISD\Files\School\11th Grade\Science Fair\ScienceFair2024Code\IRIS\Previous Runs" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.QkNN - ARCENE - T5 - LOCAL">
+    <configuration name="APResCodeT1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ScienceFair2024Code" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/APResCodeT1.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="QkNN - ARCENE - T5 - IVYBRIDGE" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ScienceFair2024Code" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ARCENE" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ARCENE/QkNN - ARCENE - T5 - IVYBRIDGE.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="QkNN - ARCENE - T5 - LOCAL" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ScienceFair2024Code" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ARCENE" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ARCENE/QkNN - ARCENE - T5 - LOCAL.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="QkNN - ARCENE - T5 - SKYLAKE" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ScienceFair2024Code" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ARCENE" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ARCENE/QkNN - ARCENE - T5 - SKYLAKE.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="QkNN - IRIS - T7" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ScienceFair2024Code" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/IRIS" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/IRIS/QkNN - IRIS - T7.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.QkNN - ARCENE - T5 - LOCAL" />
+        <item itemvalue="Python.QkNN - ARCENE - T5 - SKYLAKE" />
+        <item itemvalue="Python.APResCodeT1" />
+        <item itemvalue="Python.QkNN - ARCENE - T5 - IVYBRIDGE" />
+        <item itemvalue="Python.QkNN - IRIS - T7" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-PY-241.18034.82" />
+        <option value="bundled-python-sdk-975db3bf15a3-2767605e8bc2-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.18034.82" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="09c0ab90-0d2f-431e-907e-c8c3beed5f24" name="Changes" comment="" />
+      <created>1732717393126</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1732717393126</updated>
+      <workItem from="1732717394873" duration="14574000" />
+      <workItem from="1732739293709" duration="573000" />
+      <workItem from="1732740850523" duration="14094000" />
+      <workItem from="1732816563234" duration="42000" />
+      <workItem from="1732819112086" duration="1904000" />
+      <workItem from="1732829357052" duration="3309000" />
+      <workItem from="1732836796367" duration="575000" />
+      <workItem from="1732839391752" duration="12693000" />
+      <workItem from="1732907813357" duration="17147000" />
+      <workItem from="1733004852086" duration="13000" />
+      <workItem from="1733178436515" duration="870000" />
+      <workItem from="1733225996003" duration="181000" />
+      <workItem from="1733227774879" duration="6636000" />
+      <workItem from="1733276594618" duration="346000" />
+      <workItem from="1733280744877" duration="1879000" />
+    </task>
+    <task id="LOCAL-00009" summary="added correct file path">
+      <option name="closed" value="true" />
+      <created>1732733231896</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1732733231896</updated>
+    </task>
+    <task id="LOCAL-00010" summary="fixed (hopefully) all errors">
+      <option name="closed" value="true" />
+      <created>1732733951802</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1732733951802</updated>
+    </task>
+    <task id="LOCAL-00011" summary="fixed (hopefully) all errors">
+      <option name="closed" value="true" />
+      <created>1732733964312</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1732733964312</updated>
+    </task>
+    <task id="LOCAL-00012" summary="renamed job">
+      <option name="closed" value="true" />
+      <created>1732734025808</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1732734025808</updated>
+    </task>
+    <task id="LOCAL-00013" summary="got rid of outbound internet stuff">
+      <option name="closed" value="true" />
+      <created>1732734571526</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1732734571526</updated>
+    </task>
+    <task id="LOCAL-00014" summary="fixed pbs script (I hope)">
+      <option name="closed" value="true" />
+      <created>1732741116042</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1732741116042</updated>
+    </task>
+    <task id="LOCAL-00015" summary="changed pbs mpiexec statement">
+      <option name="closed" value="true" />
+      <created>1732741894061</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1732741894061</updated>
+    </task>
+    <task id="LOCAL-00016" summary="added debug print statement">
+      <option name="closed" value="true" />
+      <created>1732742031752</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1732742031752</updated>
+    </task>
+    <task id="LOCAL-00017" summary="updated PBS code">
+      <option name="closed" value="true" />
+      <created>1732742614468</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1732742614468</updated>
+    </task>
+    <task id="LOCAL-00018" summary="updated PBS code">
+      <option name="closed" value="true" />
+      <created>1732748161701</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1732748161701</updated>
+    </task>
+    <task id="LOCAL-00019" summary="updated PBS code">
+      <option name="closed" value="true" />
+      <created>1732748865652</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1732748865652</updated>
+    </task>
+    <task id="LOCAL-00020" summary="updated PBS code again">
+      <option name="closed" value="true" />
+      <created>1732765836329</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1732765836329</updated>
+    </task>
+    <task id="LOCAL-00021" summary="updated PBS code again">
+      <option name="closed" value="true" />
+      <created>1732766465795</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1732766465795</updated>
+    </task>
+    <task id="LOCAL-00022" summary="updated PBS code again">
+      <option name="closed" value="true" />
+      <created>1732767475503</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1732767475503</updated>
+    </task>
+    <task id="LOCAL-00023" summary="updated PBS code again">
+      <option name="closed" value="true" />
+      <created>1732799842099</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1732799842099</updated>
+    </task>
+    <task id="LOCAL-00024" summary="updated PBS code again">
+      <option name="closed" value="true" />
+      <created>1732800205274</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1732800205274</updated>
+    </task>
+    <task id="LOCAL-00025" summary="updated PBS code again">
+      <option name="closed" value="true" />
+      <created>1732800929577</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1732800929577</updated>
+    </task>
+    <task id="LOCAL-00026" summary="updated PBS code again">
+      <option name="closed" value="true" />
+      <created>1732800946725</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1732800946725</updated>
+    </task>
+    <task id="LOCAL-00027" summary="updated PBS code again">
+      <option name="closed" value="true" />
+      <created>1732804590221</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1732804590221</updated>
+    </task>
+    <task id="LOCAL-00028" summary="updated PBS code again, added milan nodes">
+      <option name="closed" value="true" />
+      <created>1732819260677</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1732819260677</updated>
+    </task>
+    <task id="LOCAL-00029" summary="updated PBS code again, doing intel cascade lake nodes">
+      <option name="closed" value="true" />
+      <created>1732819890585</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1732819890585</updated>
+    </task>
+    <task id="LOCAL-00030" summary="updated PBS code again, doing milan nodes cause they're free">
+      <option name="closed" value="true" />
+      <created>1732825926019</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1732825926019</updated>
+    </task>
+    <task id="LOCAL-00031" summary="redid all code">
+      <option name="closed" value="true" />
+      <created>1732829855439</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1732829855439</updated>
+    </task>
+    <task id="LOCAL-00032" summary="pbs for cascadelake updated">
+      <option name="closed" value="true" />
+      <created>1732830534412</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1732830534412</updated>
+    </task>
+    <task id="LOCAL-00033" summary="pbs for cascadelake updated">
+      <option name="closed" value="true" />
+      <created>1732831387371</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1732831387371</updated>
+    </task>
+    <task id="LOCAL-00034" summary="updated milan node pbs">
+      <option name="closed" value="true" />
+      <created>1732837220713</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1732837220713</updated>
+    </task>
+    <task id="LOCAL-00035" summary="added more milan node stuff">
+      <option name="closed" value="true" />
+      <created>1732839617173</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1732839617173</updated>
+    </task>
+    <task id="LOCAL-00036" summary="finally figured out ivybridge">
+      <option name="closed" value="true" />
+      <created>1732848964211</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1732848964211</updated>
+    </task>
+    <task id="LOCAL-00037" summary="finally figured out ivybridge">
+      <option name="closed" value="true" />
+      <created>1732849003658</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1732849003658</updated>
+    </task>
+    <task id="LOCAL-00038" summary="finally figured out ivybridge">
+      <option name="closed" value="true" />
+      <created>1732849236388</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1732849236388</updated>
+    </task>
+    <task id="LOCAL-00039" summary="finally figured out ivybridge">
+      <option name="closed" value="true" />
+      <created>1732850313071</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1732850313071</updated>
+    </task>
+    <task id="LOCAL-00040" summary="finally figured out ivybridge">
+      <option name="closed" value="true" />
+      <created>1732850606157</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1732850606157</updated>
+    </task>
+    <task id="LOCAL-00041" summary="updated for ray ivybridge">
+      <option name="closed" value="true" />
+      <created>1732892242188</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1732892242188</updated>
+    </task>
+    <task id="LOCAL-00042" summary="updated for ray ivybridge">
+      <option name="closed" value="true" />
+      <created>1732908450408</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1732908450408</updated>
+    </task>
+    <task id="LOCAL-00043" summary="updated for joblib ivybridge">
+      <option name="closed" value="true" />
+      <created>1732909316205</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1732909316205</updated>
+    </task>
+    <task id="LOCAL-00044" summary="updated for dask (again) ivybridge">
+      <option name="closed" value="true" />
+      <created>1732910087002</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1732910087002</updated>
+    </task>
+    <task id="LOCAL-00045" summary="updated for mpi4py (again) ivybridge">
+      <option name="closed" value="true" />
+      <created>1732910461797</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1732910461797</updated>
+    </task>
+    <task id="LOCAL-00046" summary="updated for mpi4py (again) ivybridge">
+      <option name="closed" value="true" />
+      <created>1732910752428</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1732910752428</updated>
+    </task>
+    <task id="LOCAL-00047" summary="updated for mpi4py (again) ivybridge">
+      <option name="closed" value="true" />
+      <created>1732911149160</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1732911149160</updated>
+    </task>
+    <task id="LOCAL-00048" summary="updated for mpi4py (again) ivybridge">
+      <option name="closed" value="true" />
+      <created>1732912004910</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1732912004910</updated>
+    </task>
+    <task id="LOCAL-00049" summary="updated for mpi4py (again) ivybridge">
+      <option name="closed" value="true" />
+      <created>1732912493638</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1732912493638</updated>
+    </task>
+    <task id="LOCAL-00050" summary="now working on skylake">
+      <option name="closed" value="true" />
+      <created>1732916646281</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1732916646281</updated>
+    </task>
+    <task id="LOCAL-00051" summary="back to ivy bridge">
+      <option name="closed" value="true" />
+      <created>1732924767420</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1732924767420</updated>
+    </task>
+    <task id="LOCAL-00052" summary="back to skylake">
+      <option name="closed" value="true" />
+      <created>1732926318955</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1732926318955</updated>
+    </task>
+    <task id="LOCAL-00053" summary="back to skylake">
+      <option name="closed" value="true" />
+      <created>1732938357576</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1732938357577</updated>
+    </task>
+    <task id="LOCAL-00054" summary="working with skylake">
+      <option name="closed" value="true" />
+      <created>1732945626446</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1732945626446</updated>
+    </task>
+    <task id="LOCAL-00055" summary="working with skylake">
+      <option name="closed" value="true" />
+      <created>1733178751118</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1733178751118</updated>
+    </task>
+    <task id="LOCAL-00056" summary="working with skylake">
+      <option name="closed" value="true" />
+      <created>1733228053003</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1733228053003</updated>
+    </task>
+    <task id="LOCAL-00057" summary="working with skylake">
+      <option name="closed" value="true" />
+      <created>1733267261230</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1733267261230</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="added correct file path" />
+    <MESSAGE value="fixed (hopefully) all errors" />
+    <MESSAGE value="renamed job" />
+    <MESSAGE value="got rid of outbound internet stuff" />
+    <MESSAGE value="fixed pbs script (I hope)" />
+    <MESSAGE value="changed pbs mpiexec statement" />
+    <MESSAGE value="added debug print statement" />
+    <MESSAGE value="updated PBS code" />
+    <MESSAGE value="updated PBS code again" />
+    <MESSAGE value="updated PBS code again, added milan nodes" />
+    <MESSAGE value="updated PBS code again, doing intel cascade lake nodes" />
+    <MESSAGE value="updated PBS code again, doing milan nodes cause they're free" />
+    <MESSAGE value="redid all code" />
+    <MESSAGE value="pbs for cascadelake updated" />
+    <MESSAGE value="updated milan node pbs" />
+    <MESSAGE value="added more milan node stuff" />
+    <MESSAGE value="finally figured out ivybridge" />
+    <MESSAGE value="updated for ray ivybridge" />
+    <MESSAGE value="updated for joblib ivybridge" />
+    <MESSAGE value="updated for dask (again) ivybridge" />
+    <MESSAGE value="updated for mpi4py (again) ivybridge" />
+    <MESSAGE value="now working on skylake" />
+    <MESSAGE value="back to ivy bridge" />
+    <MESSAGE value="back to skylake" />
+    <MESSAGE value="working with skylake" />
+    <option name="LAST_COMMIT_MESSAGE" value="working with skylake" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ScienceFair2024Code$QkNN___ARCENE___T5___IVYBRIDGE.coverage" NAME="QkNN - ARCENE - T5 - IVYBRIDGE Coverage Results" MODIFIED="1732892885884" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ARCENE" />
+    <SUITE FILE_PATH="coverage/ScienceFair2024Code$QkNN___ARCENE___T1.coverage" NAME="QkNN - ARCENE - T1 Coverage Results" MODIFIED="1732718287325" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ARCENE" />
+    <SUITE FILE_PATH="coverage/ScienceFair2024Code$QkNN___IRIS___T2.coverage" NAME="QkNN - IRIS - T2 Coverage Results" MODIFIED="1732718597857" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/IRIS" />
+    <SUITE FILE_PATH="coverage/ScienceFair2024Code$QkNN___IRIS___T5.coverage" NAME="QkNN - IRIS - T5 Coverage Results" MODIFIED="1732720028631" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/IRIS" />
+    <SUITE FILE_PATH="coverage/ScienceFair2024Code$QkNN___IRIS___T7.coverage" NAME="QkNN - IRIS - T7 Coverage Results" MODIFIED="1732720511245" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/IRIS" />
+    <SUITE FILE_PATH="coverage/ScienceFair2024Code$QkNN___IRIS___T1.coverage" NAME="QkNN - IRIS - T1 Coverage Results" MODIFIED="1732718283054" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ScienceFair2024Code$APResCodeT1.coverage" NAME="APResCodeT1 Coverage Results" MODIFIED="1733275385289" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ScienceFair2024Code$QkNN___IRIS___T4.coverage" NAME="QkNN - IRIS - T4 Coverage Results" MODIFIED="1732719410514" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/IRIS" />
+    <SUITE FILE_PATH="coverage/ScienceFair2024Code$QkNN___IRIS___T3.coverage" NAME="QkNN - IRIS - T3 Coverage Results" MODIFIED="1732719134195" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/IRIS" />
+    <SUITE FILE_PATH="coverage/ScienceFair2024Code$QkNN___IRIS___T6.coverage" NAME="QkNN - IRIS - T6 Coverage Results" MODIFIED="1732720359042" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/IRIS" />
+    <SUITE FILE_PATH="coverage/ScienceFair2024Code$QkNN___ARCENE___T5___SKYLAKE.coverage" NAME="QkNN - ARCENE - T5 - SKYLAKE Coverage Results" MODIFIED="1733280976255" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ARCENE" />
+    <SUITE FILE_PATH="coverage/ScienceFair2024Code$QkNN___ARCENE___T5___LOCAL.coverage" NAME="QkNN - ARCENE - T5 - LOCAL Coverage Results" MODIFIED="1733282127403" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ARCENE" />
+  </component>
+</project>
