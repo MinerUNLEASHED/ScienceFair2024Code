@@ -12,6 +12,7 @@ from mpi4py import MPI
 from qiskit.circuit.library import ZZFeatureMap
 from qiskit_machine_learning.kernels import FidelityQuantumKernel
 
+print("Past imports, please work")
 # Set a small epsilon value to avoid division by zero
 EPSILON = 1e-10
 
