@@ -28,6 +28,7 @@ export MPI_LAUNCH_TIMEOUT=60
 export MPI_SHEPHERD=true
 export PATH=/nobackup/ajesani/myenv/bin:$PATH
 export SITE_NEEDED="/nobackup"
+export PYTHONUNBUFFERED=1
 
 # Load required modules
 module load comp-intel/2020.4.304
