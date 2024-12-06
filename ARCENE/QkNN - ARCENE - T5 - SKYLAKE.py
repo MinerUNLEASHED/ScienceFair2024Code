@@ -12,7 +12,8 @@ from mpi4py import MPI
 from qiskit.circuit.library import ZZFeatureMap
 from qiskit_machine_learning.kernels import FidelityQuantumKernel
 
-print("Past imports, please work")
+
+
 # Set a small epsilon value to avoid division by zero
 EPSILON = 1e-10
 
@@ -35,6 +36,9 @@ try:
 except Exception as e:
     print(f"Error initializing MPI: {e}", file=sys.stderr, flush=True)
     sys.exit(-2)
+
+if (rank == 0):
+    print("Past imports, please work")
 
 # Logging utility
 def log(message):
