@@ -5,11 +5,11 @@
 #PBS -S /bin/bash
 # Use the Bash shell interpreter
 
-#PBS -l select=50:ncpus=128:mpiprocs=128:model=mil_ait:mem=430GB
-# Request 50 Milan nodes with 128 CPUs, 128 MPI processes per node, and a memory limit of 430GB per node
+#PBS -l select=30:ncpus=128:mpiprocs=64:model=mil_ait:mem=409GB
+# Request 30 Milan nodes, 64 MPI processes per node, and 80% of the max memory (409 GB of 512 GB per node)
 
-#PBS -l walltime=8:00:00
-# Maximum runtime of 8 hours
+#PBS -l walltime=2:00:00
+# Maximum runtime of 2 hours
 
 #PBS -j oe
 # Combine stdout and stderr into a single file
@@ -21,27 +21,32 @@
 # Email address for notifications
 
 #PBS -m abe
-# Notify on abort, begin, and end
+# Notify on abort (a), begin (b), and end (e)
 
-# Environment variables for MPI
+# Set environment variables for MPI execution
 export MPI_LAUNCH_TIMEOUT=60
 export MPI_SHEPHERD=true
 export PATH=/nobackup/ajesani/myenv/bin:$PATH
 export SITE_NEEDED="/nobackup"
+export PYTHONUNBUFFERED=1
 
-# Load required modules
-module load comp-intel/2023.2.1
+# Load required modules for Milan nodes
 module load mpi-hpe/mpt.2.28_25Apr23_rhel87
+module load comp-intel/2023.2.1
+module load python3
 
 # Change to the directory where the job was submitted
-cd $PBS_O_WORKDIR
+cd ~
 
-# Verify that necessary files exist before proceeding
+# Activate the pre-existing virtual environment
+source /nobackup/ajesani/myenv/bin/activate
+
+# Verify necessary files exist
 pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "ls /nobackup/ajesani/myenv/bin/python || exit 1"
 pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "ls /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv || exit 1"
 
-# Pin processes and monitor memory usage with mbind.x
-export OMP_NUM_THREADS=1  # Set OpenMP threads to 1 since we are maximizing MPI processes
-mpiexec -np 6400 /u/scicon/tools/bin/mbind.x -cs -t1 -v /nobackup/ajesani/myenv/bin/python "/nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/QkNN - ARCENE - T5 - MILAN.py"
+# Run the job using MPI
+mpiexec -np 1920 /u/scicon/tools/bin/mbind.x -gm -cs /nobackup/ajesani/myenv/bin/python "/nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/QkNN - ARCENE - T5 - MILAN.py"
 
-# End of script
+# Optional cleanup of TMPDIR
+#pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "rm -rf \$TMPDIR/* 2>/dev/null || true"
