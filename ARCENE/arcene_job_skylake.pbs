@@ -8,8 +8,8 @@
 #PBS -l select=30:ncpus=40:mpiprocs=20:model=sky_ele:mem=150GB
 # Request 30 Skylake nodes, 20 MPI processes per node, and 160 GB of memory per node
 
-#PBS -l walltime=8:00:00
-# Maximum runtime of 8 hours
+#PBS -l walltime=2:00:00
+# Maximum runtime of 2 hours
 
 #PBS -j oe
 # Combine stdout and stderr into a single file
