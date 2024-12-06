@@ -32,7 +32,7 @@ export PYTHONUNBUFFERED=1
 
 # Load required modules for Milan nodes
 module load mpi-hpe/mpt.2.28_25Apr23_rhel87
-#module load comp-intel/2023.2.1
+module load comp-intel/2023.2.1
 module load python3
 
 # Change to the directory where the job was submitted
