@@ -8,8 +8,8 @@
 #PBS -l select=30:ncpus=128:mpiprocs=64:model=mil_ait:mem=409GB
 # Request 30 Milan nodes, 64 MPI processes per node, and 80% of the max memory (409 GB of 512 GB per node)
 
-#PBS -l walltime=8:00:00
-# Maximum runtime of 2 hours
+#PBS -l walltime=48:00:00
+# Maximum runtime of 48 hours
 
 #PBS -j oe
 # Combine stdout and stderr into a single file
