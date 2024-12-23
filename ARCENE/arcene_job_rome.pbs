@@ -1,0 +1,52 @@
+#!/bin/bash
+#PBS -N qknn_arcene_t2
+# Job name
+
+#PBS -S /bin/bash
+# Use the Bash shell interpreter
+
+#PBS -l select=75:ncpus=128:mpiprocs=64:model=rom_ait:mem=409GB
+# Request 75 Rome nodes, 64 MPI processes per node, and 80% of the max memory (409 GB of 512 GB per node)
+
+#PBS -l walltime=03:00:00
+# Maximum runtime of 3 hours
+
+#PBS -j oe
+# Combine stdout and stderr into a single file
+
+#PBS -W group_list=n2217
+# Specify your project group
+
+#PBS -M 100032493@ccisd.net
+# Email address for notifications
+
+#PBS -m abe
+# Notify on abort (a), begin (b), and end (e)
+
+# Set environment variables for MPI execution
+export MPI_LAUNCH_TIMEOUT=60
+export MPI_SHEPHERD=true
+export PATH=/nobackup/ajesani/myenv/bin:$PATH
+export SITE_NEEDED="/nobackup"
+export PYTHONUNBUFFERED=1
+
+# Load required modules for Rome nodes
+module load mpi-hpe/mpt.2.25
+module load comp-intel/2020.4.304
+module load python3
+
+# Change to the directory where the job was submitted
+cd $PBS_O_WORKDIR
+
+# Activate the pre-existing virtual environment
+source /nobackup/ajesani/myenv/bin/activate
+
+# Verify necessary files exist
+pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "ls /nobackup/ajesani/myenv/bin/python || exit 1"
+pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "ls /nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/Standardized_ARCENE_Dataset.csv || exit 1"
+
+# Run the job using MPI
+mpiexec -np 4800 /u/scicon/tools/bin/mbind.x -gm -cs /nobackup/ajesani/myenv/bin/python "/nobackup/ajesani/qknn_arcene_1/ScienceFair2024Code/ARCENE/QkNN - ARCENE - T5 - ROME.py"
+
+# Optional cleanup of TMPDIR
+#pdsh -w "$(uniq $PBS_NODEFILE | paste -sd "," -)" "rm -rf \$TMPDIR/* 2>/dev/null || true"
